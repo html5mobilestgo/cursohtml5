@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c:contact c:Version="1" xmlns:c="http://schemas.microsoft.com/Contact" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MSP2P="http://schemas.microsoft.com/Contact/Extended/MSP2P">
+	<c:CreationDate>2015-12-05T14:26:06Z</c:CreationDate><c:Extended xsi:nil="true"/>
+	<c:ContactIDCollection><c:ContactID c:ElementID="8ced1d1a-dd3b-40c4-b3af-fffce2c4e249"><c:Value>c807f4c8-c6d8-4f3c-8233-478df9e048e7</c:Value></c:ContactID></c:ContactIDCollection><c:NameCollection><c:Name c:ElementID="c5bd064c-bbd1-4b81-b9b3-85235afda952"><c:FormattedName>el nombre del santo</c:FormattedName><c:GivenName>el nombre del santo</c:GivenName></c:Name></c:NameCollection><c:PhotoCollection><c:Photo c:ElementID="fb45f8b2-1759-4c51-afd7-98758abcb85a"><c:LabelCollection><c:Label>UserTile</c:Label></c:LabelCollection></c:Photo></c:PhotoCollection></c:contact>
