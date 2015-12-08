@@ -1,0 +1,198 @@
+/*****************************************************/
+/* estilo general                                    */    
+/*****************************************************/
+header, nav, footer, article, section img {display:block;}
+
+h1               { text-align:center; 
+	           background-color: yellow; 
+	           border: thin blue solid;
+	           text-transform: uppercase;}
+	          
+h2:first-letter  { text-transform: capitalize;}
+	          
+a:visited        { color:orange;} 
+
+ul               { list-style-type: square;}
+
+abbr             { color: green;
+                   font-weight: bold;}
+
+/*****************************************************/
+/* Encabezamiento                                    */	
+/*****************************************************/
+
+header h1       { font-family: Garamond, "Times New Roman", serif; 
+		  text-align: center;
+		  font-size: xx-large; 
+		  color: white;
+		  background-image: url("images/fondo.jpg") !important; }
+
+/*****************************************************/		  
+/* Último momento                                    */
+/*****************************************************/
+
+section.tope 
+		{ float:left; 
+		  width:74%; 
+		  font-size: large;
+		  color: blue;
+		  border: thick red solid;}
+		  
+section.tope * img
+		{ float:left; 
+		  width:150px; }
+		  
+section.tope * p
+		{ font-size: medium;}
+		
+#aviso          { color: red; 
+		  text-align: center;
+		  font-family: message-box; 
+		  letter-spacing: 10px; }
+		  
+/*****************************************************/		
+/*  Menú                                             */	
+/*****************************************************/
+
+#menu           { border:thin green solid; 
+	          background-color: yellow; 
+	          display:inline; 
+	          margin: 8px;
+	          padding:5px;
+	          font-family: Arial, sans-serif;
+	          font-variant: small-caps;}
+	          
+menu * a        { text-decoration:none;}   
+
+/*****************************************************/	        
+/* Barra de navegación lateral                       */
+/*****************************************************/
+
+nav.lateral 
+		{ float:right; 
+		  width:24%; 
+	          border: thin blue dotted;
+	          background-color: lightblue;}
+	          
+/*****************************************************/	
+/* Columna 1                                         */ 
+/*****************************************************/
+
+section.col1    { float:left; 
+	          width:30%; 
+	          border: thin lightgreen solid;}
+	          
+section.col1 h1 { background-color: lightgreen; 
+	          border: thin green solid;}          
+
+/*****************************************************/
+/* Columna 2                                         */  
+/*****************************************************/
+
+section.col2 
+	        { float:left; 
+	          width:45%; 
+	          border: thin blue solid;}
+	          
+section.col2 h1 { background-color: lightblue; 
+	          border: thin blue solid;}       
+
+/*****************************************************/
+/* Columna 3                                         */
+/*****************************************************/
+
+section.col3 
+                { float:right; 
+                  width:24%; 
+                  border: thin yellow solid;}
+                  
+        
+/*****************************************************/	          
+/* Artículos generales                               */  
+/*****************************************************/
+
+article         { border: thin green groove;
+		  margin: 10px;	}
+
+/*****************************************************/
+/* Imágenes dentro de artículos                      */	
+/*****************************************************/
+
+article * img	{ max-width: 90%;
+		  margin:auto; }                  
+        
+/*****************************************************/
+/* Artículos con fondos especiales                   */	
+/*****************************************************/
+
+article.tecnica	{ background-color: lightblue; 
+		  border: thick dashed darkblue; 
+		  font-family: Verdana; 
+		  color:red;}
+		  
+article.fondo	{ background-image: url("images/monroe.jpg"); 
+	          border: thick dotted darkviolet; }
+	          
+/*****************************************************/	
+/* Pie de página                                     */
+/*****************************************************/
+
+aside           { float: left; 
+	          width:99%; 
+	          border: thin black ridge;}
+
+footer          { clear:both;}	
+	
+/*****************************************************/
+*/ + Clases  e identificadores  varios               */	
+/*****************************************************/
+		          
+div.cuadro      { border: thick yellow solid;}
+	        
+div.scroll      { border: thin black solid;
+		  height:160px;
+                  overflow:scroll;
+                  background-color: lightgrey;}
+
+.cine           { color: darkviolet; 
+		  font-weight: 900; 
+		  font-family: Arial; 
+		  letter-spacing: 2px; }
+		  
+.imtext         { float: none; 
+        	  vertical-align: text-bottom;  
+        	  max-width: 30px;
+        	  display: inline;}	
+        
+ol	        { list-style-type:none;
+	          padding:0px;
+	          margin:0px;}
+	          
+li.pelota       { background-image: url(images/pelota.jpg); 
+	          background-repeat:no-repeat;
+	          background-position:0px 5px; 
+	          padding-left:14px;}
+	          
+li.pelota2      { background-image: url(images/pelota2.jpg); 
+		  background-repeat:no-repeat;
+		  background-position:0px 5px; 
+		  padding-left:14px; }
+		  
+li.ciclismo	{ background-image: url(images/ciclismo.jpg); 
+		  background-repeat:no-repeat;
+		  background-position:0px 5px; 
+		  padding-left:14px;} 
+		  
+.rojo           { color:red;} 
+        
+                 
+#chica, td, address
+                { font-size: 12px;}  
+        
+#idr2           { font-size: 12px;
+                  display: none;}
+	
+
+}
+
+ 
