@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Elegir estilo</title>
+<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+// se recuperan los estilos según
+// la última actualización de
+// localStorage (para este navegador y
+// ordenador)
+$(function(){
+	recupera_estilos();
+	// se bloquea el submit del formulario
+	$('form#estilos').submit(function(event){
+		event.preventDefault();
+		// se guardan los estilos
+		// en localStorage
+		guardar_estilos();
+	});
+});
+
+function guardar_estilos(){	
+	// se recuperan los valores del formulario
+	localStorage.setItem("border", $("#border").val());
+	localStorage.setItem("backgroundColor", $("#background_color").val());
+	localStorage.setItem("text_color", $("#text_color").val());
+	localStorage.setItem("text_size", $("#text_size").val());
+	localStorage.setItem("font_family", $("#font_family").val());
+	localStorage.setItem("font_style", $("#font_style").val());
+	// se aplican a la página vigente
+	update_estilos();
+}
+
+function update_estilos(){
+	// se aplican los cambios de estilo
+	// a la página vigente
+	$("body").css("border", $("#border").val());
+	$("body").css("backgroundColor", $("#background_color").val());
+	$("body").css("color", $("#text_color").val());
+	$("body").css("fontSize", $("#text_size").val());
+	$("body").css("font-family", $("#font_family").val());
+	$("body").css("font-style", $("#font_style").val());
+}
+	
+function recupera_estilos(){
+	// se recuperan los estilos de localStorage
+	// y se asignan en las etiquetas del formulario
+	var border = localStorage.getItem("border");
+	var backgroundColor = localStorage.getItem("background_color");
+	var text_color = localStorage.getItem("text_color");
+	var text_size = localStorage.getItem("text_size");
+	var font_family = localStorage.getItem("font_family");
+	var font_style = localStorage.getItem("font_style");
+	
+	$("#border").val(border);
+	$("#background_color").val(backgroundColor);
+	$("#text_color").val(text_color);
+	$("#text_size").val(text_size);
+	$("#font_family").val(font_family);
+	$("#font_style").val(font_style);
+	update_estilos();
+}
+</script>
+</head>
+<body>
+<p><strong>Estilos</strong></p>
+<form id="estilos"  method="post" accept-charset="utf-8">
+<fieldset id="estilos" class="">
+<legend>Elegir estilos para el texto</legend>
+<ol>
+<li>
+	<label for="border">Borde</label>
+	<select name="border" id="border">
+		<option value="solid">solid</option>
+		<option value="dashed">dashed</option>
+		<option value="dotted">dotted</option>
+		<option value="double">doubled</option>
+	</select>
+</li>	
+<li>
+	<label for="background_color">Color de fondo (#nnn)</label>
+	<input type="color" name="background_color" value="" id="background_color">
+</li>
+<li>
+	<label for="text_color">Color del texto (#nnn)</label>
+	<input type="color" name="text_color" value="" id="text_color">
+</li>
+<li>
+	<label for="text_size">Tamaño del texto</label>
+	<select name="text_size" id="text_size">
+		<option value="10px">10px</option>
+		<option value="20px">20px</option>
+		<option value="30px">30px</option>
+	</select>
+</li>
+<li>
+	<label for="font_family">Fuente</label>
+	<select name="font_family" id="font_family">
+		<option value="serif">Serif</option>
+		<option value="sans-serif">Sans serif</option>
+	</select>
+</li>	
+<li>
+	<label for="font_style">Estilo</label>
+	<select name="font_style" id="font_style">
+		<option value="oblique">oblique</option>
+		<option value="normal">normal</option>
+	</select>
+</li>	
+</ol>
+</fieldset>
+<input type="submit" value="Guardar estilo">
+</form>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+</p>
+</body>
+</html>

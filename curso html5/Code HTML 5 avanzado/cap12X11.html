@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x11.html -->
+<!-- ejemplo de uso selector por clase -->
+<head>
+<title>Aplicación de estilo desde jQuery</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("p.cl01").css("background-color","red");
+});
+</script>
+<style>
+p {color:white;
+	background-color: white;}
+</style>
+</head>
+<body>
+<h1>Balón de oro:</h1>
+<p>Rooney</p>
+<p>Cristiano</p>
+<p>Iniesta</p>
+<p class="cl01">Messi</p>
+<p>Higuaín</p> 
+</body>
+</html>

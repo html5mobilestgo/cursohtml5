@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x05.html -->
+<!-- ejemplo de uso de un evento click con jQuery -->
+<head>
+<title>Gestión del evento click de un botón</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("button").click(function(){
+	$("div").hide();
+	}); 
+});
+</script>
+</head>
+<body>
+<div>Hacer clic en el botón y desaparece esto </div>
+<button>Oculta el texto</button> 
+</body>
+</html>

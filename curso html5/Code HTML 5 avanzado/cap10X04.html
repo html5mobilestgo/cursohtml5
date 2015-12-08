@@ -1,0 +1,27 @@
+<!DOCTYPE html> 	 
+<html> 	 
+<!-- este código corresponde al archivo cap10X04.html -->
+<!--  primer ejemplo de canvas -->
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+<body>
+<h1>Ejemplo del trabajo con imágenes</h1> 	
+<p>Dibujaremos una parte de esta imagen en el lienzo:</p>
+<img id="perro" src="perro.jpg" alt="Mi perro" />
+<canvas id="miCanvas" width="220" height="220" style="border:8px solid red;">
+El elemento Canvas HTML5 no está soportado en su navegador.
+Utilice un navegador actualizado.	 
+</canvas> 	 
+<script type="text/javascript">
+window.onload = function(){ 
+  var obj=document.getElementById("miCanvas");
+  var contexto=obj.getContext("2d");
+  var imagen=document.getElementById("perro");
+  contexto.drawImage(imagen,35,0,75,75,10,10,200,200);
+};
+
+</script>
+</body> 	 
+</html> 	 
+ 	 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="no-js">
+<!-- este código corresponde al archivo cap16X03.html -->
+<!--  Creación de botones con gradientes -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Creación de botones con gradientes</title>
+<style>
+/* para todos los elementos input */
+
+input { 
+*/ definición de la sombra */
+-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+box-shadow: 10px 10px 5px rgba(0, 0, 0, .4);
+
+/* definicón del radio de los bordes */
+-webkit-border-radius: 25px;
+-border-radius: 25px;
+
+/* cursor cuando el cursor pasa por encima */ 
+cursor: pointer;
+
+/* color del texto*/
+color: #000;
+
+/* fuente del texto */
+font: x-large Arial, sans-serif;
+
+/* fuente del texto */
+text-shadow: 0 5px 5px rgba(0, 255, 0, 0.5);
+
+/* margen y padding del cuadro */
+margin: 5px 10px 0 0;
+padding: 10px 10px 10px 30px;
+}
+
+/* selecciona el botón submit */
+input[value="Enviar email"] {
+	color: white;
+	background: url(email.jpg) 5% 50% no-repeat blue;
+	background: url(email.jpg) 5% 50% no-repeat, -webkit-linear-gradient(#FF0000,#0000b1);
+	background: url(email.jpg) 5% 50% no-repeat, -moz-linear-gradient(#FF0000,#0000b1);
+	background: url(email.jpg) 5% 50% no-repeat, -linear-gradient(#FF0000,#0000b1); 
+}
+</style>
+</head>
+<body>
+<form>
+<input type="button" value="Consultar correo">
+<input type="submit" value="Enviar email" />
+</form>
+</body>
+</html>

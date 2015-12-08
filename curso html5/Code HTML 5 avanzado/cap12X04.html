@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="no-js">
+<!-- este código corresponde al archivo cap12X04.html -->
+<!--  ejemplo de detección con Modernizr -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Ejemplo de detección con Modernizr</title>
+	<script src="modernizr.js"></script>
+	<script>
+	if (Modernizr.sessionstorage) {
+	 alert('Navegador con soporte para SessionStorage!!');
+	 } else {
+	  alert('Lo siento, en este navegador no tenemos soporte para SessionStorage');
+	}
+	if (Modernizr.webworkers) {
+	 alert('Navegador con soporte para webworkers!!');
+	 } else {
+	  alert('Lo siento, en este navegador no tenemos soporte para webworkers');
+	}
+	if (Modernizr.canvas) {
+	 alert('Navegador con soporte para canvas!!');
+	 } else {
+	  alert('Lo siento, en este navegador no tenemos soporte para canvas');
+	}
+	</script>
+</head>
+<body>
+</body>
+</html>

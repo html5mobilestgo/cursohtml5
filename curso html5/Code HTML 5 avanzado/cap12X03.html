@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="no-js">
+<!-- este código corresponde al archivo cap12X03.html -->
+<!--  ejemplo de detección con Modernizr -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Ejemplo de detección con Modernizr</title>
+	<script src="modernizr.js"></script>
+<style>
+div.hayStorage, div.noHayStorage {display: none;}
+.sessionstorage div.hayStorage {display: block;}
+.no-sessionstorage div.noHayStorage {display: block;}
+
+</style>
+</head>
+<body>
+<div class="noHayStorage">Lo siento, en este navegador no tenemos soporte para SessionStorage</div>
+<div class="hayStorage">Navegador con soporte para SessionStorage!!</div>
+
+</body>
+</html>

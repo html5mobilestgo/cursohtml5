@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x13.html -->
+<!-- ejemplo de each() -->
+<head>
+<title>Ejemplo de los métodos each() size() y append()</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button").click(function(){
+	alert("Hay " + $("p").size() + " párrafos");
+    $("p").each(function(){
+      $("div").append("<br>" + $(this).text());	 
+    });
+  });
+});
+</script>
+</head>
+<body>
+<button>Duplicar párrafos</button>
+<p>Párrafo 1 </p>
+<p>Párrafo 2 </p>
+<p>Párrafo 3 </p>
+<p>Párrafo 4 </p>
+<div></div>
+
+</body>
+</html>
+ 

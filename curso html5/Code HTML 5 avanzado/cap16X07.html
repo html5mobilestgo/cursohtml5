@@ -1,0 +1,56 @@
+<!DOCTYPE html >
+<html >
+<!-- este código corresponde al archivo cap16X07.html -->
+<!--  transiciones -->
+<head>
+	
+	<title>Transiciones</title>
+<style>
+div
+{
+/* se define un cuadro de 80x80 */
+/* de color azul */
+width:80px;
+height:80px;
+background:blue;
+color: blue;
+
+/* esta codificación es la de la especificación */
+/* pero aún no está implementada por los fabricantes */
+transition-property:width, height, background;
+transition-duration:10s;
+transition-delay:2s;
+
+/* Código para el navegador Opera */
+-o-transition-property:width, height, background;
+-o-transition-timing-function: ease-in-out;
+-o-transition-duration:10s;
+-o-transition-delay:2s;
+
+/* Código para el navegador Mozilla */
+-moz-transition-property:width, height, background;
+-moz-transition-timing-function: ease-in-out;
+-moz-transition-duration:10s;
+-moz-transition-delay:2s;
+
+/* Código para la plataforma Webkit (Chrome, Google, Maxthon, etc.) */
+-webkit-transition-property:width, height, background;
+-webkit-transition-timing-function: ease-in-out;
+-webkit-transition-duration:10s;
+-webkit-transition-delay:2s;
+}
+
+div:hover
+{
+width:400px;
+height: 200px;
+background: yellow;
+}
+</style>
+</head>
+<body> 
+<div>Texto dentro del área div</div>
+<p>Deje el ratón 2 segundos sobre el cuadro azul y se producirá una transición que durará 10 segundos en la que cambiará de tamaño y de color.  </p>
+</body>
+</html>
+

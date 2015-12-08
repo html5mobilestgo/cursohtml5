@@ -1,0 +1,11 @@
+1
+00:00:2,000 --> 00:00:5,000
+Esto sale al principio
+
+2
+00:01:0,000 --> 00:05:0,000
+Esto sale después
+
+3
+00:05:2,000 --> 00:15:5,000
+Esto sale al final

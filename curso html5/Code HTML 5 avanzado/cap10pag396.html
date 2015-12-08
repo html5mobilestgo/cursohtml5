@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<audio controls="controls" autoplay >
+	<source src="alesha.mp3" type="audio/mp3" /> 
+	<source src="alesha.ogg" type="audio/ogg" />  
+	<script type="text/javascript" src="swfobject.js">
+		</script> 
+	<div id="miFlash"></div>
+	<script> 
+	var so = new SWFObject("main.swf","id",
+		"50","30","8","#FFF");
+	so.addParam("scale", "noscale");
+	so.addParam("wmode", "transparent");
+	so.addVariable("file", "alesha.mp3");
+	so.write("miFlash");   
+</audio>
+
+<p>Si prefiere puede descargar el archivo de audio: 
+<a href="alesha.mp3">Audio mp3</a></p>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html> 	 
+<html> 	 
+<!-- este código corresponde al archivo cap10X02.html -->
+<!--  primer ejemplo de canvas -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Dibujo de una rejilla en canvas</title>
+<style> 	 
+#micanvas { 	 
+border:4px solid red;	 
+background:white; 	 
+} 	 
+</style> 	 
+<script> 	 
+// Declara las  variables 	 
+var objcanvas; 	 
+var context; 	 
+
+// Dibujo de la rejilla
+// la función dibujar() se invoca desde el evento onclick
+// en el cuerpo de la página	 
+function dibujar() {
+// ¿hay soporte para canvas?
+if (!document.createElement('canvas').getContext) {
+ alert('Su navegador no tiene soporte para la etiqueta CANVAS de HTML 5');
+} 	 
+// primer paso: obtener referencia 
+// del elemento canvas	 
+objcanvas = document.getElementById('micanvas');
+	
+// segundo paso: obtener el contexto 
+context = objcanvas.getContext('2d');	
+ 
+// Definimos el ancho de la línea y
+// su color 
+context.lineWidth = 2;	 
+context.strokeStyle = '#FF0000';
+	 
+// Definimos el espaciado entre líneas	 
+steps = 50;
+	 
+// Coordenadas a 0 
+var xPos = 0;	 
+var yPos = 0;	
+ 
+// Calcula cuántas líneas hay en cada eje  
+var qLineasY = parseInt(objcanvas.height/steps);	 
+var qLineasX = parseInt(objcanvas.width/steps);	
+ 
+// Trazar las líneas en el eje X 
+for (var i=1; i<=qLineasX;i++) {	 
+	xPos = i*steps;	 
+	context.moveTo(xPos,0);	 
+	context.lineTo(xPos,objcanvas.height);	 
+	context.stroke();	 
+}	 
+ 
+// Trazar las líneas en el eje Y	 
+for (var i=1; i<=qLineasY;i++) { 
+	yPos = i*steps;	 
+	context.moveTo(0,yPos);	 
+	context.lineTo(objcanvas.width,yPos);	 
+	context.stroke();	 
+}		 
+
+// Bucle para detectar intersecciones
+// y dibujar el texto	 
+for (var y=0; y<qLineasY; y++) {	 
+	for (var x=0; x<qLineasX; x++) {
+	 
+		// calcula la nueva coordenada	 
+		// el texto se coloca un poco desplazado 
+		// para evitar escribir sobre las líneas
+		xPos = x*steps+2;	 
+		yPos = y*steps+9; 
+
+		// Dibuja el texto en las intersecciones	 
+		context.textAlign = 'left';	 
+	 
+		// Dibuja el texto en el punto elegido
+		context.fillText(x*steps+','+y*steps,xPos,yPos);	 
+	}	 
+} 	 
+} 	 
+ 
+</script> 	 
+</head> 	 
+<body onclick="dibujar()">	 
+<h1>Ejemplo de una rejilla con elemento canvas (clic y dibujará la rejilla)</h1> 	 
+<canvas id="micanvas" width="800" height="500" >	 
+El elemento Canvas HTML5 no está soportado en su navegador.
+Utilice un navegador actualizado.	 
+</canvas> 	 
+</body> 	 
+</html> 	 
+ 	 

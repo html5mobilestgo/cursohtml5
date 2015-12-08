@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/JavaScript">
+function fun01(objForm) {
+	if (objForm.MiTelefono.value == "" ){
+		alert("Falta introducir el número de teléfono");
+		return false;
+	}
+	if (objForm.Fax.value == "" ){
+	    objForm.Fax.value = objForm.MiTelefono.value;
+	}
+	return confirm("¿Confirma el envío del formulario?");
+}
+</script>
+
+
+<form action="cod0907.html" method ="post" onsubmit="return fun01(this)">
+
+Teléfono: <input type="tel" name="MiTelefono"> </br>
+Fax: <input type="Text" name="Fax"> </br>
+
+<input type="submit"nvalue="Enviar"/></br>
+
+</form>
+
+<p>Con algo de javascript para validar que el teléfono y el fax siempre sean campos informados.</p>
+
+</body>
+</html>

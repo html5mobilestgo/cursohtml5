@@ -1,0 +1,37 @@
+<!DOCTYPE html> 	 
+<html> 	 
+<!-- este código corresponde al archivo cap10X05.html -->
+<!--  primer ejemplo de video/canvas -->
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+<body>
+<h1>Ejemplo del trabajo con video</h1> 	
+<p>Video desde archivo mp4:</p>
+<video  id="idvideo" autoplay controls width="50%">
+ <source src='video.mp4' type='video/mp4' />
+</video>
+<br>
+<p>Video reproducido en Canvas (sólo una parte)</P>
+<canvas id="miCanvas" width="300" height="300" style="border:8px solid red;">
+El elemento Canvas HTML5 no está soportado en su navegador.
+Utilice un navegador actualizado.	 
+</canvas> 	 
+<script type="text/javascript">
+
+var video=document.getElementById("idvideo");
+var canvas=document.getElementById("miCanvas");
+ctx=canvas.getContext('2d');
+
+video.addEventListener('play', function() { intervalo = window.setInterval(function() 
+	{ ctx.drawImage(video, 200, 200, 300, 300, 0 ,0  ,300, 300) }, 30); }, false);
+
+video.addEventListener('pause', function() {  window.clearInterval(intervalo);}, false);
+
+video.addEventListener('ended', function() { clearInterval(intervalo);}, false);  
+
+
+</script>
+</body> 	 
+</html> 	 
+ 	 

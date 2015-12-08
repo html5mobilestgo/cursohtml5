@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capfile03.html -->
+<!-- ejemplo de uso de la API File  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista de imágenes</title>
+<style>
+img {
+    height: 200px;
+    border: 2px solid #000;
+}
+</style>
+<script>
+function filesSelected(files) {
+   
+    //Bucle por la lista   
+    for (var i = 0; i < files.length; i++) {
+		var fichero = files[i];
+	
+		// Si no es una imagen no se trata
+		if (!fichero.type.match('image.*')) {
+			continue;
+		}
+      
+		// se crea el objeto FileReader
+		var reader = new FileReader();
+
+		// después de la lectura correcta se 
+		// procesa esta función
+		reader.onload = (function() {
+			// proceso posterior a la lectura
+			return function(lectura) {
+			// crea un elemento p para
+			// colocar cada imagen 		
+			var p = document.createElement('p');
+			// se incluye una etiqueta img para 
+			// cada imagen
+			p.innerHTML = ['<img  src="', lectura.target.result,
+                            '" />'].join('');
+			// se inserta con insertBefore (insertar antes de)				
+			document.getElementById('lista').insertBefore(p, null);
+			};
+		})(fichero);
+
+		// Lectura asíncrona de los datos de URL
+		reader.readAsDataURL(fichero);
+	}
+ }
+
+</script>
+<body>
+<input type="file" id="imags" name="imags[]" onchange="filesSelected(this.files);" multiple />
+<p id="lista"></p>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap10X09.html -->
+<!-- uso de la API multimedia-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Controles personalizados para un reproductor de video</title>
+<style>
+body { font: bold Arial, sans-serif;}
+video {display: block;}
+#allbody {
+	display: block;
+	margin: 10px auto;
+	overflow: hidden;
+	position: relative;
+	width: 640px;
+	border: 2px solid black;
+}
+#controles {
+	background: rgb(255, 0, 0);
+	bottom: 0;
+	height: 30px;
+	left: 0;
+	padding: 20px 10px 10px;
+	position: absolute;
+	width: 640px;
+	z-index: 1;
+}
+
+#barratiempos {
+	top: 0;
+	width: 550px;
+	left: 45px;
+}
+
+#volumen { width: 80px;}
+
+#silenciar {
+	float: right;
+	width: 60px;
+}
+
+#reproducir { width: 70px;}
+
+#contador, #duracion {
+	color: #fff;
+	position: absolute;
+	top: 0;
+}
+
+#contador { left: 10x; top: -10px;}
+
+#duracion {
+	right: 25px; top: -10px;
+	text-align: right
+}
+
+button {
+	background: rgb(255, 255, 255);
+	cursor: pointer;
+	border: 2px solid green;
+	padding: 5px;
+	}
+	
+input[type="range"] { position: absolute; }
+
+label[for="volumen"] {
+	color: #00F;
+	float: right;
+	margin: 5px 95px 0 15px;
+}
+</style>
+<script>
+// objetos globales
+var video = null;
+var barTiempos = null;
+var barVolumen = null;
+var btnReproducir = null;
+var btnSilenciar = null;
+var btnRetroceder = null;
+var btnAvanceRapido = null;
+var btnPantallaCompleta = null;
+
+// tareas de inicialización inicial
+function inicializar() {
+	// obtener el elemento video
+	video = document.getElementsByTagName('video')[0];
+	
+	// eliminar los botones estándar
+	// del objeto video 
+	// para usar los personalizados
+	video.removeAttribute('controls');
+	
+	// elementos de la interfaz y
+	// botones para gestionarlos por JavaScript
+	barTiempos = document.getElementById('barratiempos');
+	barVolumen = document.getElementById('volumen');
+	btnReproducir = document.getElementById('reproducir');
+	btnSilenciar = document.getElementById('silenciar');
+	btnRetroceder = document.getElementById('retroceder');
+	btnAvanceRapido = document.getElementById('avancerapido');
+	btnPantallaCompleta = document.getElementById('pantallacompleta');
+	
+	// manipuladores de los cambios
+	// de volumen o tiempos y clicks
+	barTiempos.addEventListener('change',cambioTiempo,false);
+	barVolumen.addEventListener('change',cambioVolumen,false);	
+	btnReproducir.addEventListener('click',reproducirPausa,false);
+	btnSilenciar.addEventListener('click',silencioSonido,false);
+	btnRetroceder.addEventListener('click',retroceder,false);
+	btnAvanceRapido.addEventListener('click',avanceRapido,false);
+	btnPantallaCompleta.addEventListener('click',pantallaCompleta,false);	
+	
+	
+	// iinicializa la información del video
+	if (video.readyState > 0) {
+		var duracion = document.getElementById('duracion');
+		// colocar la duración del video
+		duracion.innerHTML = (darFormato(video.duration));
+		var duracionVideo = Math.round(video.duration);
+		// asignar el valor máximo de la duración
+		barTiempos.setAttribute('max', duracionVideo);
+		btnReproducir.disabled = false;
+		barTiempos.value = 0;
+	}
+	
+	 // cuando se reproduce se cambia el texto del botón
+	// Reproducir --> Pausa	
+	video.addEventListener('play', function() {
+		btnReproducir.innerHTML = 'Pausa';
+		}, false);
+		
+	// cuando se pausa la reproducción se cambia el texto  
+	// Pausa --> Reproducir  
+	video.addEventListener('pause', function() {
+		btnReproducir.innerHTML = 'Reproducir';
+		}, false);
+		
+	// Final de la reproducción
+	video.addEventListener('ended', function(){
+		btnReproducir.innerHTML = 'Reproducir otra vez';
+		}, false);
+	
+	// evento timeupdate
+	// ocurre mientras el video se
+	// está ejecutando
+	video.addEventListener('timeupdate', function() {
+			var contador = document.getElementById('contador');
+			contador.innerHTML = darFormato(video.currentTime);
+			barTiempos.value = video.currentTime;
+		}, false);	
+  
+}
+
+function reproducirPausa() {
+	if (reproduciendo()) {
+		video.pause();
+		btnReproducir.innerHTML = 'Reproducir';
+	} else {
+		video.play();
+		btnReproducir.innerHTML = 'Pausa';
+	}
+};
+
+// este botón intercambia entre 
+// un estado y otro
+// silencio / sonido
+function silencioSonido(){
+	var btnSilenciar = document.getElementById('silenciar');
+	if (video.muted){
+		video.muted = false;
+		btnSilenciar.innerHTML = 'Sin sonido';
+	} else {
+		video.muted = true;
+		btnSilenciar.innerHTML = 'con sonido';		
+	}
+}
+
+//cambia el nivel de volumen
+function cambioVolumen() {
+	video.volume = barVolumen.value;
+}
+
+//cambia el tiempo de reproducción 
+function cambioTiempo(){
+	video.currentTime = barTiempos.value;
+}
+
+// avance rápido
+function avanceRapido() {
+	video.playbackRate = video.playbackRate + 5;
+}
+
+// retroceder el video
+function retroceder() {
+	video.playbackRate = video.playbackRate - 5;
+}
+
+// pantalla completa
+// funciona en webkit
+function pantallaCompleta() {
+	video.webkitEnterFullscreen()
+}
+
+// verifica si se está reproduciendo
+// el video
+function reproduciendo() {
+	if(video.paused || video.ended) {
+		return false;
+	} else {
+		return true;
+	}
+};
+
+//crear un formato para el tiempo de reproducción
+// y la duración
+function darFormato(qSegundos) {
+	// convierte un tiempo en segundos
+	// a un formato mm:ss
+	s = Math.round(qSegundos);
+	m = Math.floor(s / 60);
+	s = Math.floor(s % 60);
+	s = (s >= 10) ? s : '0' + s;
+	return m + ':' + s;
+}
+
+// al cargarse la página
+// se realiza la inicialización
+window.addEventListener('load',inicializar,false);
+</script>
+</head>
+<body>
+<div id="allbody">
+	<div id="controles">
+		<button id="reproducir">Reproducir</button>
+		<p id="contador">0:00</p>
+		<p id="duracion">0:00</p>
+		<label for="volumen">Vol:<input id="volumen" name="volumen" type="range" min="0" max="1" step="0.1" required /></label>
+		<button id="silenciar">Silencio</button>
+		<input id="barratiempos" name="barratiempos" type="range" min="0" max="1" step="0.1" required />
+		<button id="retroceder">Retroceder</button>
+		<button id="avancerapido">Rápido</button>
+		<button id="pantallacompleta">Pantalla completa</button>
+	</div>
+	<video width="640" height="320" controls>
+		<!-- formato de video para Safari y IE9.-->
+		<source src="video.mp4" type="video/mp4" />
+		<!-- formato de video para Chrome, Firefox o Opera -->
+		<source src="video.webm" type="video/webm" />
+		<source src="video.ogv" type="video/ogg" />
+	</video>
+</div>
+</body>
+</html>

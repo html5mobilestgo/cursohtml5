@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="no-js">
+<!-- este código corresponde al archivo cap16X02.html -->
+<!--  ejemplo de gradientes CSS 3 -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Ejemplo de gradientes CSS 3</title>
+	<style>
+div { 
+	height: 150px; width: 100px;
+	border: 3px solid black; 
+/* para IE y otros navegadores que no soportan gradientes CSS 3 */
+/* se usa una imagen con un gradiente dibujado con Gimp */
+	background: url(gradiente.jpg); 
+/* para los navegadores basados en webkit */
+	background: -webkit-linear-gradient(black, blue,yellow);
+/* para mozilla */
+	background: -moz-linear-gradient(black, red,yellow);
+/* para los otros navegadores con soporte */
+	background: -linear-gradient(green,yellow);
+}
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

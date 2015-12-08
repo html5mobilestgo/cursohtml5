@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capGEOX01.html -->
+<!-- ejemplo de uso de la API Geolocation-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Geolocation</title>
+<script>
+
+// Inicialización
+function inicializar() {
+	// se crea un detector del evento click
+	// del botón btnGPS
+	var btnObtenerPosicion = document.getElementById('btnGPS');
+	btnObtenerPosicion.addEventListener('click',obtenerGPS,false);
+}
+
+// gestor del evento click del botón btnGPS
+function obtenerGPS() {
+	// elemento de la interfaz en donde
+	// se coloca la respuesta
+	var objResultado = document.getElementById('resultado');
+	
+	// detectar si hay soporte
+	if (navigator.geolocation) {
+		// invoca al método getCurrentPosition
+		// función callback: getRespuestaOK
+		navigator.geolocation.getCurrentPosition(getRespuestaOK, getRespuestaKO);
+		objResultado.innerHTML = 'Está esperando la información de posicionamiento...';
+	} else {
+		// no hay soporte
+		objResultado.innerHTML = 'La API GeoLocation de HTML 5 no está soportada';
+	}
+}
+// gestor de la respuesta correcta
+function getRespuestaOK(posGPS) {
+	
+	// elemento de la interfaz en donde
+	// se coloca la respuesta
+	var objResultado = document.getElementById('resultado');
+	
+	// informa las coordenadas   
+	objResultado.innerHTML = 
+		'Latitud: ' + posGPS.coords.latitude + '<br>' +
+		'Longitud: ' + posGPS.coords.longitude + '<br>' +	
+		'Altitud: ' + posGPS.coords.altitude;
+
+}
+
+// gestor de la respuesta incorrecta
+function getRespuestaKO(error) {
+	
+	// elemento de la interfaz en donde
+	// se coloca la respuesta
+	var objResultado = document.getElementById('resultado');
+	
+	// informa que hubo un error  
+	var msgText= 'Error: ';
+	
+	switch(error.code) {
+		case error.POSITION_UNAVAILABLE:
+			msgText += 'No se puede obtener el posicionamiento vigente';
+			break;
+		case error.PERMISSION_DENIED:
+			msgText += 'No se autoriza la difusión del posicionamiento del usuario';	
+			break;
+		case error.TIMEOUT:
+			msgText += 'Se agotó el tiempo de espera de la información de posicionamiento';	
+			break;			
+		default:
+			msgText += 'No se puede determinar el tipo de error';
+			break;	
+	}
+	
+	// mensaje del error
+	objResultado.innerHTML = msgText;
+}
+// Inicialización al cargar la página
+window.addEventListener('load',inicializar,false);
+</script>
+</head>
+<body>
+<button id="btnGPS">Obtener posición</button>
+<div id="resultado"></div>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+Android es un sistema operativo móvil basado en Linux, que junto con aplicaciones middleware7 
+está enfocado para ser utilizado en dispositivos móviles como teléfonos inteligentes, tabletas,
+Google TV y otros dispositivos. Es desarrollado por la Open Handset Alliance, la cual es 
+liderada por Google. Este sistema por lo general maneja aplicaciones como Market (Marketing)
+o su actualización, Google Play Store.
+Fue desarrollado inicialmente por Android Inc., una firma comprada por Google en 2005.
+Es el principal producto de la Open Handset Alliance, un conglomerado de fabricantes y 
+desarrolladores de hardware, software y operadores de servicio. Las unidades vendidas de 
+teléfonos inteligentes con Android se ubican en el primer puesto en los Estados Unidos, en 
+el segundo y tercer trimestres de 2010,con una cuota de mercado de 43,6% en el 
+tercer trimestre. A nivel mundial alcanzó una cuota de mercado del 50,9% durante el cuarto
+trimestre de 2011, más del doble que el segundo sistema operativo (iOS de iPhone) con más 
+cuota. 
+Tiene una gran comunidad de desarrolladores escribiendo aplicaciones para extender la 
+funcionalidad de los dispositivos. A la fecha, se han sobrepasado las 400.000 aplicaciones
+(de las cuales, dos tercios son gratuitas) disponibles para la tienda de aplicaciones oficial
+de Android: Google Play, sin tener en cuenta aplicaciones de otras tiendas no oficiales para 
+Android, como pueden ser la App Store de Amazon o la tienda de aplicaciones Samsung Apps de 
+Samsung. Google Play es la tienda de aplicaciones en línea administrada por Google, aunque 
+existe la posibilidad de obtener software externamente. Los programas están escritos en el 
+lenguaje de programación Java.18 No obstante, no es un sistema operativo libre de malware, 
+aunque la mayoría de ello es descargado de sitios de terceros.

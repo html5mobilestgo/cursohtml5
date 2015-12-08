@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x10.html -->
+<!-- ejemplo gestión del evento resize de la ventana  -->
+<head>
+<title>Gestión del evento resize</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $(window).resize(function() {
+    $("body").css("background-color","black");
+  });
+;
+});
+</script>
+</head>
+<body>
+<p>Si cambias el tamaño de la ventana no me verás.</p>
+</body>
+</html>
+ 
+
+
