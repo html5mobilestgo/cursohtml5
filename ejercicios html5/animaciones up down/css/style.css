@@ -1,0 +1,37 @@
+.mover{
+  margin:100px;
+}
+ h1:hover {
+  width:600px;
+  color:red;
+  text-align: tight;
+}
+
+.mover:hover{
+  width:300px;
+  -webkit-animation-duration:2s;
+  -webkit-animation-timing-function:ease-in-out;
+  -webkit-animation-iteration-count: 6;
+  -webkit-animation-name:moviendo;
+}
+@-webkit-keyframes moviendo{
+  0%{
+    -webkit-transform:translate (0px,-40px);
+  }
+   20%{
+    -webkit-transform:translate (0px,-100px);
+  }
+  35%{
+    -webkit-transform: translate(0px,100px);
+  60%{
+    -webkit-transform:translate (0px,-100px);
+  }
+  80%{
+    -webkit-transform:translate (0px,-50px);
+  }
+  100%{
+    -webkit-transform:translate (0px,0px);
+  }
+  
+
+}

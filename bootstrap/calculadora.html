@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora curso HTML5 M&oacuteviles</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script>
+        $(function(){
+
+         $(".val").click(function(e){
+          e.preventDefault();
+          var a = $(this).attr("href");
+          $(".screen").append(a);
+          $(".outcome").val($(".outcome").val() + a);
+         
+         });
+         $(".equal").click(function(){
+          $(".outcome").val(eval($(".outcome").val()));
+          $(".screen").html(eval($(".outcome").val()));
+         });
+         $(".clear").click(function(){
+          $(".outcome").val("");
+          $(".screen").html("");
+         });
+         $(".min").click(function(){
+          $(".cal").stop().animate({
+           width: "0px", height: "0px", marginLeft: "700px", marginTop: "1000px"
+          }, 500);
+          setTimeout(function(){$(".cal").css("display", "none")}, 600);
+         });
+         $(".close").click(function(){
+          $(".cal").css("display", "none");
+         })
+        })
+
+</script>
+<link rel="stylesheet" href="css/calculadora.css" crossorigin="anonymous">
+  </head>
+  <body>
+<div class="wrap">
+<div class="cal">
+  <span><h1>Curso de HTML5 Moviles</h1></span>
+ <div class="screen">0</div>
+ <input type="hidden" class="outcome" value="2+2" />
+ <ul class="buttons">
+  <li><a class="clear">C</a></li>
+  <li><a class="val btn" href="-">&plusmn;</a></li>
+  <li><a class="val btn" href="/">&divide;</a></li>
+  <li><a class="val btn" href="*">&times;</a></li>
+  <li><a class="val btn" href="7">7</a></li>
+  <li><a class="val btn" href="8">8</a></li>
+  <li><a class="val btn" href="9">9</a></li>
+  <li><a class="val btn" href="-">-</a></li>
+  <li><a class="val btn" href="4">4</a></li>
+  <li><a class="val btn" href="5">5</a></li>
+  <li><a class="val btn" href="6">6</a></li>
+  <li><a class="val btn" href="+">+</a></li>
+  <li><a class="val btn" href="1">1</a></li>
+  <li><a class="val" href="2">2</a></li>
+  <li><a class="val" href="3">3</a></li>
+  <li><a class="equal tall btn btn-info"  >=</a></li>
+  <li><a class="val wide shift btn btn-success" href="0">0</a></li>
+  <li><a class="val shift btn btn-info" href=".">.</a></li>
+ </ul>
+</div></div>
+  <canvas width="300px" height="600px"></canvas>
+  </body>
+</html>
