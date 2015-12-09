@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+<!-- sintonizador de radio -->
+<head>
+<title>Internews BBC</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<style type="text/css">
+	#btnPlay { background-color: "green"; width: 50px; height: 50px;}
+</style>
+<script>
+// variables globales
+// para contener el objeto del elemento AUDIO 
+var objAudio;
+var objBtn;
+var objTexto;
+
+// Inicialización
+function fnInicializar() {
+	// se obtiene la referencia al elemento de audio
+	// obtener las referencias de los elementos de 
+	// la interfaz
+	// para actuar sobre ellos desde JavaScript
+	objAudio = document.getElementById('audio');
+	objBtn = document.getElementById('btnPlay');
+	objTexto = document.getElementById('texto');
+	
+	// gestionar errores del objeto audio
+	objAudio.onerror = function(evt) {
+	switch (objAudio.error.code) {
+	case objAudio.error.MEDIA_ERR_ABORTED:
+			alert('La reproducción fue interrumpida.');
+			break;
+		case objAudio.error.MEDIA_ERR_NETWORK:
+			alert('Error de red.');
+			break;
+		case objAudio.error.MEDIA_ERR_DECODE:
+			alert('Error en la decodificación del stream.');
+			break;
+		case objAudio.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+			alert('Error: archivo de medio no soportado.');
+			break;
+		default:
+			alert('Error no esperado: **'+objAudio.error.code+'**');
+			break;
+	}
+	}
+	
+	objAudio.src = 	"http://vprbbc.streamguys.net:80/vprbbc24.mp3";
+	objAudio.type = 'audio/' + "mp3";
+	
+}
+// fin inicialización /////////////
+//////////////////////////////// 
+
+// clic en botón Reproducción/Pausa
+function playPause() {
+	// Si terminó o si ya está en pausa...
+	if (objAudio.ended || objAudio.paused) {
+	// toca reproducir
+		objAudio.play();
+		objBtn.style.backgroundColor = "red";
+		objTexto.innerHTML = "BBC PLAYING ...";
+	} else {
+	// caso contrario, coloca en pausa 
+		objAudio.pause();
+		objBtn.style.backgroundColor = "green";
+		objTexto.innerHTML = "BBC PAUSING ...";
+	}
+}
+
+
+// carga de la página-->inicializa todo
+window.addEventListener('load',fnInicializar,false);
+</script>
+
+</head>
+<body>
+<p id="texto">Play/Pause</p>
+<input type="button" id="btnPlay" onClick="playPause();"></input>
+<audio id="audio">
+	<p>El navegador no tiene soporte para el elemento AUDIO
+	 de HTML 5. </p>
+</audio>
+</body>
+</html>

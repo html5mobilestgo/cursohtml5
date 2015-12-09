@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- este código corresponde al archivo cap05X03.html -->
+<!--  ejemplo de uso de Microdata -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Texto personal con y sin Microdata</title>
+
+</head>
+<body>
+<section>
+<h2>Texto de ejemplo</h2>
+<p>Estimados señores,</p>
+<p>Soy Juan Salas Pérez, ingeniero en telecomunicaciones, jefe del grupo de investigaciones de la Universidad de Barcelona 
+y mis trabajos están detallados en mi sitio web <a href="http://www.juansalasperez.com">www.juansalasperez.com</a>.</p> 
+<p>Actualmente resido en Barcelona, en av. Diagonal, 180.</p>
+</section>
+<h2>El mismo texto escrito con Microdata:</h2>
+<section itemscope itemtype="http://data-vocabulary.org/Person"> 
+        <p>Estimados señores,</p>
+		<p>Soy <span itemprop="name">Juan Salas Pérez</span>, 
+        <span itemprop="title">ingeniero en telecomunicaciones</span>, 
+		jefe del grupo de investigaciones de la  
+        <span itemprop="affiliation">Universidad de Barcelona</span>. 
+         y mis trabajos están detallados en mi sitio web        
+        <a href="http://www.juansalasperez.com" itemprop="url">www.juansalasperez.com</a>.
+        <section itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+                Actualmente resido en 
+				<span itemprop="locality">Barcelona</span>, en  
+                <span itemprop="street-address">av. Diagonal, 180</span>.	 
+        </section>
+</section>
+</body>
+</html>

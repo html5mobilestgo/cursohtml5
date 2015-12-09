@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<!-- este código corresponde al archivo cap09X06.html -->
+<!--  validación con estilo -->
+<title>Validación combinada estilo</title>
+<style> 	 
+* {margin: 0; font: 14px arial, sans-serif; padding: 0;} 	 
+form {padding-top: 20px; width: 400px;} 	 
+li {clear: both; list-style-type: none; margin: 0 0 10px;} 	 
+label {display: block; float: left; margin: 0 10px 0 0; padding: 6px; text-align: right; width: 100px} 	 
+input {background-position: 3px 3px; background-repeat: no-repeat; padding: 3px 3px 3px 25px; width: 200px;} 	 
+input:focus {outline: none;} 	 
+input:invalid:required {background-image: url(informar.png); border: 3px solid #ff0000;} 	 
+input:focus:invalid {background-image: url(error.png); border: 3px solid #ffff00; } 	 
+input:valid {background-image: url(ok.png); border: 3px solid #00ff00;} 	 
+input[type=submit] {background-image: url(send.png); cursor: pointer; float: right; text-align: right; width: auto;} 	 
+</style> 
+<script>
+function errormsg(){
+   var errorInput = document.getElementById("miweb");
+   errorInput.setCustomValidity("El sitio web debe usar el protocolo http");
+   }
+   </script>
+<body>
+<form>	 
+<ol>
+<li><label for="nombre">Nombre:</label>
+<input required  type="text" id="nombre" name="nombre" /></li>	 
+<li><label for="tel">Teléfono:</label>
+<input placeholder="ej: 99999999"  type="tel" id="tel" name="tel" /></li>	 
+<li><label for="miweb">Sitio web:</label>
+<input required type="url"	placeholder="ej: http://www.misitio.com" 
+	id="miweb" name="miweb" oninput="errormsg()" /></li>	 
+<li><label for="email">Email:</label>
+<input required type="email" placeholder="ej: xxx@xxx.com" id="email"  name="email" /></li>	 
+<li><input type="submit" value="Enviar" /></li> 	 
+</ol> 	 
+</form>
+</body>
+</html>

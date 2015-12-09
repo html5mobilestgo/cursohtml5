@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Uso de la etiqueta CANVAS con reproducción de imagen en escala</title>
+<script>
+window.onload = function(){
+   //Se obtiene el objeto canvas
+var obj1 = document.getElementById('canvas01');
+   var obj2 = document.getElementById('canvas02');
+
+   // Se verifica la existencia del objeto
+   // y si se puede su contexto con getContext(),
+   // para comprobar la compatibilidad con canvas
+   		// en el navegador del usuario
+      var context1 = obj1.getContext('2d');
+ 		if (obj1 && obj1.getContext) {
+      // Utilizaremos el contexto '2D' de
+		// este canvas, para incluir una imagen
+      			if (context1) {
+		      		// Se crea la imagen como objeto
+				// Image de Javascript
+				var img = new Image();
+
+				// Desde dónde se obtiene  la imagen
+				img.src = 'php.gif';
+
+				// evento onload del objeto imagen
+				img.onload = function(){
+
+				// Dibujo la imagen en el canvas
+				// sin especificar anchura y altura
+				// para que se muestre en su tamaño
+				// original
+				context1.drawImage(img, 0, 0);
+
+				// Dibujaremos la segunda imagen
+				// utilizando el recorte
+				if (obj2 && obj2.getContext) {
+				var context2 = obj2.getContext('2d');
+				if (context2) {
+					context2.drawImage(img,
+					20, 20, 40, 40, 0, 0, 40, 40);
+				}
+			}
+		}
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<a href="http://www.codificacionweb.com">Codificación web</a>
+<canvas id="canvas01" width="200" height="200">
+Su navegador no procesa adecuadamente el elemento CANVAS.
+<br>
+Trate de utilizar Firefox, Opera, Chrome o Safari.
+</canvas>
+<canvas id="canvas02" width="200" height="200">
+Su navegador no procesa adecuadamente el elemento CANVAS.
+<br>
+Trate de utilizar Firefox, Opera, Chrome o Safari.
+</canvas>
+</body>
+</html>

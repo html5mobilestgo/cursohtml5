@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x06.html -->
+<!-- ejemplo de uso jQuery con css() -->
+<head>
+<title>Aplicación de estilo desde jQuery</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("p:contains(V)").css("background-color","red");
+	$("p:not(:contains(V))").css("background-color","blue");
+});
+</script>
+<style>
+p {color:white}
+</style>
+</head>
+<body>
+<h1>Barcelona 2</h1>
+<p>Valdez, Alves, Puyol, Piqué y Alba</p>
+<p>Xavi, Busquets e Iniesta</p>
+<p>Pedro, Messi y Villa</p> 
+<p>Suplentes: Pinto, Mascherano, Alexis, Adriano, Cuenca</p> 
+<p>Entrenador: Tito Vilanova</p>
+</body>
+</html>

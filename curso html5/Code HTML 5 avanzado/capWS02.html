@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capWS02.html -->
+<!-- ejemplo de uso de Web Workers  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Un bloqueo provocado</title>
+<script>
+var contador;
+function respuestaRapida(){
+         alert("Respuesta rápida..." );
+} 
+function respuestaLenta(){
+    for (var i = 0; i <= 9999999999; i++){
+		// hacer algo inoperante muchas veces
+        var contador = i;
+    }
+     alert("Respuesta lenta que bloqueó la página durante más de 30 segundos (según el procesador)" );
+}
+     
+  </script>
+</head>
+<body>
+   <input type="button" onclick="respuestaLenta();" value="Script de respuesta lenta" />
+   <input type="button" onclick="respuestaRapida();" value="Script de respuesta rápida" />
+</body>
+</html>

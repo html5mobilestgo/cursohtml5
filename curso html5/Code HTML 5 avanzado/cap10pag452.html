@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Uso de la etiqueta CANVAS</title>
+<script>
+window.onload = function(){
+   //Se obtiene el objeto canvas
+   var obj = document.getElementById('canvas01');
+   // Se verifica la existencia del objeto
+   // y si se puede su contexto con getContext(),
+   // para comprobar la compatibilidad con canvas
+   // en el navegador del usuario
+   if (obj && obj.getContext) {
+      // Utilizaremos el contexto '2D' de este canvas,
+      // para realizar un dibujo
+      var context = obj.getContext('2d');
+      if (context) {
+         // Si existe el contexto puedo realizar el dibujo
+         // usa el color seleccionado por defecto
+         // coordenadas px1, py1, longx, longy
+         context.fillRect(0, 0, 400, 400);
+         // cambio el color seleccionado a verde
+         context.fillStyle = 'rgba(0,255,0,0.5)';
+         // se dibuja un rectángulo interior
+         obj.setAttribute('width', 600);
+         context.fillRect(100, 100, 200, 200);
+      }
+   }
+}
+
+</script>
+</head>
+
+<body>
+
+<canvas id="canvas01" width="400" height="400">
+Su navegador no procesa adecuadamente el elemento CANVAS.
+<br>
+Trate de utilizar Firefox, Opera, Chrome o Safari.
+</canvas>
+
+</body>
+</html>

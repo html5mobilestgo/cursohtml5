@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capWS01.html -->
+<!-- ejemplo de uso de WebSockets  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Un chat basado en Websockets</title>
+<style>
+#chatBody{
+  width: 500px;
+  height: 500px;
+  background-color: #bcd;
+  padding: 20px;
+  border: solid 5px blue;
+}
+
+#estado{
+  width: 450px; 
+  height: 250px; 
+  overflow: auto;  
+  background-color: #ffb;
+  padding: 20px;
+  border: solid 5px red;
+  font-family: courier;
+}
+</style>
+<script 
+    src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'  type='text/javascript'>
+</script> 
+<script>  
+var servidor = 'ws://echo.websocket.org/';
+var objWS = new WebSocket(servidor);
+  
+// gestión dele evento onopen del WebSocket  
+objWS.onopen = function(event){
+     $('#estado').append('<br>Conectado con el servidor: ' + servidor);
+};
+
+// Gestión del evento onclose del WebSocket
+objWS.onclose = function(event){
+     $("#estado").append('<br>Se cerró la conexión con el servidor ' + servidor);
+};
+  
+// gestión del evento onmsg (recepción de un mensaje desde el servidor)  
+objWS.onmessage = function(event){
+     $('#estado').append("<br>Recibido:" + event.data);    
+};
+   
+  
+// submit de los botones de los formualrios   
+$(function(){
+	 // se envía el texto
+     $("form#chatForm").submit(function(e){
+        e.preventDefault();
+        var inputText = $("#msg");
+		 $('#estado').append("<br>Enviado:" + inputText.val());
+        objWS.send(inputText.val());
+		// limpia el cuadro de texto
+        inputText.val("");
+	});
+	  
+	// identificación del usuario  
+	$("form#userForm").submit(function(e){
+      e.preventDefault();
+      var inputText = $("#nombreUsuario");
+      objWS.send("usuario: " + inputText.val());
+	});
+   
+})
+
+</script>
+  
+</head>
+<body>
+<div id="chatBody">
+  <h3>Chat basado en WebSockets</h3>  
+  <div id="estado">conectando....</div>
+  
+  <form id="chatForm" action="#" method="post" accept-charset="ISO-8859-1">
+    <p>
+      <label for="msg">Mensaje</label>
+      <input id="msg" type="text" />      
+      <input type="submit" value="Enviar texto">
+    </p>
+  </form>
+   <form id="userForm" action="#" method="post" accept-charset="ISO-8859-1">
+    <p>
+       <label for="nombreUsuario">Usuario</label>
+       <input id="nombreUsuario" type="text" value="Sin identificar"/>
+       <input type="submit" value="Identificarse">
+    </p>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<script type="text/javascript">
+var frase = new String();
+frase="Busco palabras con menos de cinco letras";
+var result=new Array();
+result=frase.match(/\b\w{1,4}\b/g);
+document.write("Hallados: "+result+'<br>');
+document.write("En la frase: " + RegExp.input);
+</script>

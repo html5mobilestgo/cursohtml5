@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap11x07.html -->
+<!-- ejemplo de uso de database storage  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Uso de database storage</title>
+<script type="text/javascript">
+var dbtest = openDatabase('dbtesttest', '1.0', 'Base de datos de prueba', 2 * 1024 * 1024);
+var msgText;
+
+// carga los datos en la base de datos
+function cargarDatos() {
+	dbtest.transaction(function (miTrSql) {
+		miTrSql.executeSql('CREATE TABLE IF NOT EXISTS USUARIOS (userId unique, userMail, userPsw)');
+		miTrSql.executeSql('INSERT INTO USUARIOS (userId, userMail, userPsw) VALUES (1, "xxpepe9999@hotmail.es","123456_aA")');
+		miTrSql.executeSql('INSERT INTO USUARIOS (userId, userMail, userPsw) VALUES (2, "xxpepe8888@hotmail.es","123456_aA")');
+		miTrSql.executeSql('INSERT INTO USUARIOS (userId, userMail, userPsw) VALUES (3, "xxpepe7777@hotmail.es","123456_aA")');
+		miTrSql.executeSql('INSERT INTO USUARIOS (userId, userMail, userPsw) VALUES (4, "xxpepe6666@hotmail.es","123456_aA")');
+		msgText = '<p>Se creó la tabla USUARIOS y se insertaron 4  usuarios nuevos.</p>';
+		document.querySelector('#mensaje').innerHTML =  msgText;
+	});
+}
+
+// lista los datos de la base de datos
+function listarDatos() {
+	dbtest.transaction(function (miTrSql) {
+		// se lee toda la tabla USUARIOS
+		// se define una función para tratar el resultado correcto
+		miTrSql.executeSql('SELECT * FROM USUARIOS', [], function (miTrSql, lista) {
+			// se obtiene la cantidad de filas
+			var qRows = lista.rows.length;
+			msgText = "<p><b>Listado de las filas de la tabla Usuarios</b></br>Tiene en total " + qRows + " filas</p>";
+			// el texto se añade al texto ya existente
+			document.querySelector('#mensaje').innerHTML +=  msgText;
+			// se lista el campo userMail
+			// de cada una de las filas del resultado
+			for (var i = 0; i < qRows; i++){
+				msgText = "<p>" + lista.rows.item(i).userMail + "</p>";
+				document.querySelector('#mensaje').innerHTML +=  msgText;
+			}
+			}, null);
+	});
+}
+
+// al cargar la página se carga la base de datos
+window.addEventListener('load',cargarDatos,false);
+
+</script>
+</head>
+<body>
+<div id="mensaje" name="mensaje"></div>
+<input type="button" onclick="listarDatos();" value="Listar"/>
+</body>
+</html>

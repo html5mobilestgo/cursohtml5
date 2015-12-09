@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap06x07.html -->
+<!-- ejemplo de uso de svg  -->
+<head>
+<title>Degradado con SVG</title>
+<meta charset="ISO-8859-1"/>
+</head>
+<body>
+<h2>Degradado con SVG</h2>
+<svg id="elipse" height="400" xmlns="http://www.w3.org/2000/svg">
+	<ellipse cx="200" cy="80" rx="200" ry="40" 
+      style="fill:url(#degradado)" />
+   <defs>
+      <radialGradient id="degradado" cx="33%" cy="33%" r="80%"
+		fx="33%" fy="33%">
+		<stop offset="0%" style="stop-color:rgb(255,0,0);
+			stop-opacity:0"/>
+		<stop offset="100%" style="stop-color:rgb(0,0,255);
+			stop-opacity:1"/>
+      </radialGradient>
+   </defs>  
+</svg>
+</body>
+</html>

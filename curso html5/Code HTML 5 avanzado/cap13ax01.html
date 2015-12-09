@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap13ax01.html -->
+<!-- uso de la API drag-and-drop-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Colocar las banderas en los cuadros correctos</title>
+<style>
+img {
+	float:left;
+	height:40px;
+	width:80px;
+}
+#banderas {
+	float:left;
+	border-style:solid;
+	border-width:1px;
+	border-color:#000;
+	text-align:center;
+}
+
+#hueco1, #hueco2, #hueco3, #hueco4, #hueco5  {
+	float:left;
+	width:80px;
+	height:50px;
+	border-style:solid;
+	border-width:3px;
+	border-color:#333;
+}
+</style>
+<script>
+// contador de errores
+var errores =0;
+
+// comienza el inicio del arrastre
+function accionDrag(obj, evt) {
+	evt.dataTransfer.setData("Text", obj.id);
+}
+// acción de soltar
+function accionDrop(obj, evt) {
+ 
+    // identificador del objeto arrastrado
+	var oDraggedId = evt.dataTransfer.getData("Text");
+	// identificador del contador de errores
+	var objContador = document.getElementById('contador');
+		
+	if (oDraggedId == obj.innerHTML){
+	
+		// impide que el navegador
+		// abra el objeto arrastrado en nueva ventana
+		if(evt.preventDefault) {
+			evt.preventDefault();
+		}
+	
+	// crea una instancia de la imagen  
+	var oImg = new Image();
+	
+	// asigna la imagen con
+	// los datos del origen de la imagen arrastrada
+	oImg.src = document.getElementById(oDraggedId).src;
+	
+	// añade la imagen a la zona de soltado
+	obj.appendChild(oImg);	
+	
+	} else {
+		// contador de fallos	
+		errores+=1;
+		objContador.innerHTML = errores.toString();
+	}	
+}
+
+</script>
+</head>
+<body>
+<h1>Arrastre la bandera al sitio correcto</h1>
+<h2>Contador de errores</h2>
+<p id="contador">0</p><br><br>
+<div id="banderas">
+<img id="Bélgica" src="flag1.png" ondragstart="accionDrag(this, event);"><br><br>
+<img id="Austria" src="flag2.png"  ondragstart="accionDrag(this, event);"><br><br>
+<img id="Alemania" src="flag3.png" ondragstart="accionDrag(this, event);"><br><br>
+<img id="Dinamarca" src="flag4.png" ondragstart="accionDrag(this, event);"><br><br>
+<img id="Chequia" src="flag5.png"  ondragstart="accionDrag(this, event);"><br><br>
+</div>
+<div id="huecos">
+	<div id="respuestas">
+	<div id="hueco1"  ondrop="accionDrop(this, event);" ondragover="return false;">Alemania</div>
+	<div id="hueco2"  ondrop="accionDrop(this, event);" ondragover="return false;">Bélgica</div>
+	<div id="hueco3"  ondrop="accionDrop(this, event);" ondragover="return false;">Dinamarca</div>
+	<div id="hueco4"  ondrop="accionDrop(this, event);" ondragover="return false;">Chequia</div>
+	<div id="hueco5"  ondrop="accionDrop(this, event);" ondragover="return false;">Austria</div>
+	</div>
+</div>
+
+</body>
+</html>

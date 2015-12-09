@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capfile05.html -->
+<!-- ejemplo de uso de la API File  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Lectura de un archivo de texto</title>
+<style>
+#button {
+	display: none;
+}
+</style>
+
+<script> 
+// objeto FileReader para lectura
+// de archivos
+var reader;
+  
+function archivoSeleccionado(evt) {
+    // Lectura de un archivo como cadena binaria  
+    reader.readAsText(evt.target.files[0]);
+}
+
+// gestor del evento onload
+function tratarOnLoad(evt)  {  
+
+		// desaparece el botón (ya no hay
+		// nada para cancelar)
+		botonVisible(false);
+		
+		var h = document.getElementById('estado');
+		h.innerHTML = 'CONTENIDO' 
+		
+		// creamos un array
+		// cada fin de línea es un elemento 
+		// de la matriz
+		var fileArr = evt.target.result.split('\n');
+		var pr = document.getElementById('contenido');
+		var texto = '';
+		// loop por todo el array
+		for (var i =0; i <fileArr.length; i++) {
+			texto += fileArr[i].trim() + '<br>';
+		}
+		// coloca el texto del archivo en la interfaz
+		pr.innerHTML = texto;		
+} ;
+	
+function cancelarLectura() {
+    reader.abort();
+}
+
+function tratarOnError(evt) {
+    var textoError = 'Error: ';
+	switch(evt.target.error.code) {		
+		case evt.target.error.NOT_READABLE_ERR:
+			textoError += 'Problema para leer el archivo.';
+			break;
+		case evt.target.error.ABORT_ERR:
+			textoError += 'Operación cancelada.';
+			break;  
+		case evt.target.error.ENCODING_ERROR:
+			textoError += 'Formato erróneo.';
+			break;  
+		case evt.target.error.SECURITY_ERR:
+			textoError += 'Problema de seguridad.';
+			break;  
+	    case evt.target.error.NOT_FOUND_ERR:
+			textoError += 'archivo no encontrado.';
+			break;		
+		default:
+			textoError += 'Código imprevisto.';
+    };
+   
+	alert(textoError);
+	botonVisible(false);
+  }	
+// gestor del evento onabort
+function tratarOnAbort(evt) {
+		alert('Se ordena la cancelación de la lectura del archivo.');
+};
+	
+
+// se visualiza el botón para cancelar 
+// sólo se visualiza mientras se produce 
+// la lectura del archivo
+function botonVisible(b) {
+	// se controla la visibilidad del botón 
+	// de cancelación
+	var button = document.getElementById('button');
+	if (b) {
+		button.style.display = 'inline';
+	} else {
+		button.style.display = 'none';
+	}
+} 
+
+// el evento change de la etiqueta input activa la
+// función archivoSeleccionado 
+function activarDetectoresEventos() {
+	reader = new FileReader();
+	document.getElementById('files').addEventListener('change', archivoSeleccionado, false);
+	reader.onerror = tratarOnError;
+	reader.onabort = tratarOnAbort;
+	reader.onload = tratarOnLoad;
+}
+
+// al cargar la página se activan los detectores
+window.addEventListener('load',activarDetectoresEventos,false);  
+</script>
+<body>
+<input type="file" id="files" name="file" />
+<button id="button" onclick="cancelarLectura();" >Cancelar lectura</button>
+<h3 id="estado"></h3>
+<p id="contenido"></p>
+</body>
+</html>
+ 

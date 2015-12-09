@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html >
+<!-- este código corresponde al archivo cap16X08.html -->
+<!--  animaciones -->
+<head>	
+	<title>Animaciones</title>
+<style>
+div
+{
+/* se define un cuadro de 80x80 */
+/* de color azul */
+width:80px;
+height:80px;
+position: relative;
+background:blue;
+color: blue;
+
+/* codificación genérica que */
+/* ningún navegador soporta */
+animation-name:micuadro;
+animation-duration:20s;
+animation-timing-function: ease;
+animation-iteration-count: 3;
+animation-direction: alternate;
+
+/* mozilla */
+-moz-animation-name:micuadro;
+-moz-animation-duration:20s;
+-moz-animation-timing-function: ease;
+-moz-animation-iteration-count: 3;
+-moz-animation-direction: alternate;
+
+/* WebKit */
+-webkit-animation-name:micuadro;
+-webkit-animation-duration:5s;
+-webkit-animation-timing-function: ease;
+-webkit-animation-iteration-count: 3;
+-webkit-animation-direction: normal;
+-webkit-animation-direction: alternate;
+}
+
+@keyframes micuadro
+{
+from {left:0px;}
+to {left:500;background:yellow;}
+}
+
+/* mozilla */
+@-moz-keyframes micuadro 
+{
+from {left:0px;}
+to {left:500px;background:yellow;}
+}
+
+/* webkit */
+@-webkit-keyframes micuadro  
+{
+0% {left:0px;}
+100% {left:500px;background:yellow;}
+}
+</style>
+</head>
+<body>
+<div>Texto interno al div</div>
+</body>
+</html>
+

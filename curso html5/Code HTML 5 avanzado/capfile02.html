@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capfile02.html -->
+<!-- ejemplo de uso de la API File  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Obtención de la información de varios archivos</title>
+<script>
+// información del archivo seleccionado
+var txtInfo;
+function filesSelected(archivos) {
+	// se obtiene el objeto de la interfaz en donde
+	//se mostrará la información
+	var fileinfo = document.getElementById('fileinfo');
+	
+	// ¿Hay soporte para la interface?
+	if (archivos) {
+		// se obtiene el primer elemento
+		// del array
+		txtInfo = 'Archivos seleccionados. ' + archivos.length + '<br><br>';
+		for (var i = 0; i < archivos.length; i++) {
+			var objFile = archivos[i];
+		
+			// se obtiene la información
+			txtInfo += 'nombre: <b>' + objFile.name + '</b><br>';
+			txtInfo += 'tipo MIME: ' + objFile.type + '<br>';
+			txtInfo += 'tamaño en bytes: ' + objFile.size + '<br>';
+			txtInfo += 'última modificación: ' + objFile.lastModifiedDate + '<br><br>';
+		}
+	} else {
+		// el navegador no soporta la interfaz File
+		txtInfo = 'Este navegador no soporta la API File';
+	}
+	// se muestra en la interfaz
+	fileinfo.innerHTML = txtInfo;
+}
+</script>
+</head>
+<body>
+<h1>Obtener información de múltiples archivos:</h1>
+<input type="file" id="input" onchange="filesSelected(this.files);"  multiple />
+<br><br>
+<h2>Información de los archivos seleccionados</h2>
+<p id="fileinfo"></p>
+</body>
+</html>

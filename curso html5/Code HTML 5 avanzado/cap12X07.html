@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x07.html -->
+<!-- ejemplo de uso jQuery  -->
+<head>
+<title>Propiedades del objeto event </title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(document).mousemove(function (e) {
+		$("p").text("(" + e.pageX + ", " + e.pageY +")");
+	});
+});  
+</script>
+</head>
+<body>
+<h1>Posicionamiento del ratón</h1>
+<p></p>
+</body>
+</html>

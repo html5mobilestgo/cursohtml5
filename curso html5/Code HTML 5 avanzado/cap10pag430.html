@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dibujar polígonos de hasta 10 lados</title>
+<style>
+#micanvas { border:4px solid red;}
+</style>
+<script>
+var objCanvas;
+var ctx;
+
+// tareas de inicialización
+function firstStart() {
+	// crea el gestor de eventos del botón
+	var btnCrear = document.getElementById('crear');
+
+	// evento click -> crearDibujo
+	btnCrear.addEventListener('click',crearDibujo,false);
+
+	// obtiene los objetos canvas y contexto
+	objCanvas = document.getElementById('micanvas');
+	ctx = objCanvas.getContext('2d');
+}
+// tarea de dibujo del polígono
+function crearDibujo() {
+	// blanquear el lienzo
+	ctx.clearRect(0,0,objCanvas.width,objCanvas.height);
+
+	// Ver cantidad de lados
+	var qLados = document.getElementById('qLados').value;
+
+	// Obtener el punto central del polígono 
+	// (del canvas)
+	var ptoX = parseInt(objCanvas.width/2);
+	var ptoY = parseInt(objCanvas.height/2);
+	var radio = parseInt(objCanvas.width/3);
+
+	// Creación del path de dibujo
+	ctx.beginPath();
+	
+	// Primer punto del polígono
+	// primer vértice 
+	var xPos = ptoX + radio;
+	var yPos = ptoY;  
+	ctx.moveTo(xPos,yPos);
+	
+	// Trazar los lados
+	for (i = 1; i <= qLados; i++) {
+		// calcula las coordenadas siguientes
+		// dividiendo los 360 en la cantidad de lados
+		// del polígono
+		xPos = ptoX + radio * Math.cos(2 * Math.PI * i
+			 / qLados);
+		yPos = ptoY + radio * Math.sin(2 * Math.PI * i 
+			/ qLados);
+		// traza el lado
+		ctx.lineTo(xPos,yPos);
+	}
+	// Cerra el camino
+	ctx.closePath();
+
+	// estilo de las líneas y las uniones
+	ctx.lineWidth = 30;
+	ctx.lineJoin = 'round';
+	ctx.stroke();
+
+	// rellenar de color 
+	ctx.fillStyle = "#FF0000";
+	ctx.fill();
+}
+// inicializar al cargar la página
+window.addEventListener('load',firstStart,false);
+</script>
+</head>
+<body>
+<h1>Uso de canvas para crear polígonos</h1>
+<canvas id="micanvas" width="500" height="500"> </canvas>
+<br>
+Polígono de <input type="number" id="qLados" min="3" 
+	max="10" step="1" value="4"  /> lados. <br>
+<button id="crear">Crear un polígono</button>
+</body>
+</html>

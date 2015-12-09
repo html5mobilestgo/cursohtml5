@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap16X04.html -->
+<!--  Creación de sombras -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Creación de cuadro con sombras</title>
+<style>
+div {
+/* define un cuadro de 200  x 200 */
+Width: 200px; Height: 200px;
+
+/* borde grueso verde y un fondo blanco */
+Border: 10px solid green; Background-color: white; 
+
+/* radio horizontal y radio vertical */
+/* esquina superior izquierda */
+Border-top-left-radius: 20px 50px;
+
+/* radio horizontal y radio vertical son iguales */
+/* para esquina inferior derecha  */
+Border-bottom-right-radius: 30px;
+
+/* definición de dos sombras */
+/* 1 con un color negro algo traslúcido opaco = gris */
+/* 2 con color rojo algo traslúcido = rosado */
+Box-shadow: 50px 50px 10px 20px rgba(0,0,0,0.3),
+           5px 5px 2px 20px rgba(255,0,0,0.3) inset;
+		   }
+</style>
+</head>
+<body>
+<div></div>
+</body>
+</html>		   

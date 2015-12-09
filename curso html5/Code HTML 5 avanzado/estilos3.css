@@ -1,0 +1,65 @@
+	header, nav, footer, article, section {display:block;}
+	article { border: thin green groove;}
+	article.tecnica
+		{ background-color: lightblue; 
+		  border: thick dashed darkblue; }          
+	article.fondo
+		{ background-image: url("images/tomate.jpg"); 
+	          border: thick dotted darkviolet; }
+	aside   { float: left; 
+	          width:99%; border: 
+	          thin black ridge;}
+	div.cuadro 
+	        { border: thick yellow solid;}
+	footer  { clear:both;}
+	
+	header  { font-family: Garamond; 
+	          text-align: center;
+		  font-size: x-large; 
+		  background-image: url("images/fondo.jpg"); }
+	h1      { text-align:center; 
+	          background-color: yellow; 
+	          border: thin blue solid;}
+	nav.lateral 
+		{ float:right; 
+		  width:20%; 
+	          border: thin blue dotted;}
+	
+	section.col1 
+	        { float:left; 
+	          width:30%; 
+	          border: thin red solid;}
+	section.col2 
+	        { float:left; 
+	          width:49%; border: 
+	          thin yellow solid; 
+	          background-color: lightsalmon;}
+        section.col3 
+                { float:left; 
+                  width:25%; 
+                  border: thin yellow solid;}
+	section.col4 
+	        { float:left; 
+	          width:24%; 
+	          border: thin yellow solid;}
+	section.tope 
+	        { float:left; 
+	          width:79%; 
+	          border: thick red solid;}	
+	.rosa   { color: darkviolet; 
+		  font-weight: 900; 
+		  font-family: Arial; 
+		  letter-spacing: 2px; }	
+	#aviso  { color: red; 
+		  text-align: center;
+		  font-size: x-large; 
+		  font-weight: bold; 
+		  font-family: Arial; 
+		  letter-spacing: 10px; }
+	#menu   { border:thick grey solid; 
+	          background-color: yellow; 
+	          display:inline; margin: 8px;}
+	
+}
+
+ 

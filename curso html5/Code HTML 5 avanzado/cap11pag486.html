@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<script type="text/javascript">
+
+if (sessionStorage.accesos) {
+		sessionStorage.accesos=
+			Number(sessionStorage.accesos)+1;
+} else	{
+		sessionStorage.accesos=1;
+}
+document.write("Cuenta los accesos a la página dentro 
+	de la sesión: " + sessionStorage.accesos + 
+	" veces");
+</script>
+
+<p>Pulse F5 y se verá el aumento del contador.</p>
+
+<p>Al cerrar la ventana y volverla a abrir empieza nuevamente desde 1.</p>
+</body>
+</html>

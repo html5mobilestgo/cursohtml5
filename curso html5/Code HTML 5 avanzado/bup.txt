@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap10X10.html -->
+<!-- ejemplo de sintonizador de streaming radio-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Streaming Radio</title>
+<script>
+// variables globales
+// para contener el objeto del elemento AUDIO(
+var objAudio;
+// para indicar el estado de la reproducción
+var estadoAudio;
+// para los controles de audio
+var controlAudio;
+// para controlar la barra de volumen
+var controlVolumen;
+// botón Reproducción/Pausa
+var btnPlay;
+
+// Lista de estaciones de radio
+var radios = { "entries":[
+{"name":"rtve", "url":"http://icy-e-01.sharp-stream.com:80/sevenfm.mp3", "type":"mp3"},
+{"name":"rtve2", "url":"http://icy-e-01.sharp-stream.com:80/frenchradiolon.mp3", "type":"mp3"},
+{"name":"Radio clásica", "url":"http://195.10.10.206/rtve/radioclasica.mp3?GKID=2db1d7f6aa6511e1892500163ea2c743&fspref=aHR0cDovL3d3dy5saXN0ZW5saXZlLmV1L3NwYWluLmh0bWw%3D","type":"mp3"},
+{"name":"Radio clásica 2", "url":"http://195.10.10.206/rtve/radioclasica.mp3","type":"mp3"},
+{"name":"Cadena SER","url":"http://194.169.201.177:8085/liveser.mp3","type":"mp3"},
+{"name":"rac1","url":"http://streaming3.radiocat.net:80/","type":"mp3"},
+{"name":"BBC World Service","url":"http://vprbbc.streamguys.net:80/vprbbc24.mp3","type":"mp3"},
+]}
+// Inicialización
+function fnInicializar() {
+	// se obtiene la referencia al elemento de audio
+	objAudio = document.getElementById('audio');
+	
+	// gestionar errores del objeto audio
+	objAudio.onerror = function(evt) {
+	switch (objAudio.error.code) {
+		case objAudio.error.MEDIA_ERR_ABORTED:
+			alert('La reproducción fue interrumpida.');
+			break;
+		case objAudio.error.MEDIA_ERR_NETWORK:
+			alert('Error de red.');
+			break;
+		case objAudio.error.MEDIA_ERR_DECODE:
+			alert('Error en la decodificación del stream.');
+			break;
+		case objAudio.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+			alert('Error: archivo de medio no soportado.');
+			break;
+		default:
+			alert('Error no esperado:  **'+objAudio.error.code+'**');
+			break;
+}
+}
+// gestores de los eventos
+// cambio en la duración
+objAudio.addEventListener('durationchange', streamPlaying, false);
+
+// obtener las referencias de los elementos de la interfaz
+// para actuar sobre ellos desde JavaScript
+estadoAudio = document.getElementById('estadoAudio');
+controlAudio = document.getElementById('controlAudio');
+controlVolumen = document.getElementById('controlVolumen');
+btnPlay = document.getElementById('btnPlay');
+
+// se asigna un nivel de volumen por default
+ajustarVolumen(0.8);
+
+// se carga la lista de estaciones
+// que se puede ampliar a voluntad
+// lista de estaciones en la interfaz
+	var listaRadios = document.getElementById('listaRadios');
+	// creación dinámica de la lista
+	for(i=0;i<radios.entries.length;i++) {
+		// crea la etiqueta option 
+		var nuevoItem = document.createElement('option');
+		nuevoItem.text = radios.entries[i].name + '('+radios.entries[i].type+')';
+		nuevoItem.value = i;
+		// añade la opción
+	try {
+		listaRadios.add(nuevoItem, null);
+	} catch(ex) {
+		// para IE
+		listaRadios.add(nuevoItem);
+}
+}
+}
+// fin inicialización /////////////
+
+//////////////////////////////// 
+// Establece la estación elegida
+function cambiaRadio() {
+	// informa que se está cargando el buffer
+	estadoAudio.innerHTML = 'Carga del buffer...';
+	
+	// determina el origen del streaming y su tipo
+	var selectRadios = document.getElementById('listaRadios');
+	objAudio.src = radios.entries[selectRadios.selectedIndex].url;
+	objAudio.type = 'audio/' +radios.entries[selectRadios.selectedIndex].type;
+	
+	// muestra la estación seleccionada
+	var radioSintonizada = document.getElementById('radioSintonizada');
+	radioSintonizada.innerHTML = radios.entries[selectRadios.selectedIndex].name;
+	// reproduce el streaming
+	objAudio.play();
+}
+// Estado: en reproducción
+function streamPlaying() {
+	// Muestra el estado actual
+	estadoAudio.innerHTML = 'Reproducción...';
+	btnPlay.innerHTML = 'Pausa';
+	controlAudio.style.visibility = 'visible';
+}
+ 
+// clic en botón Reproducción/Pausa
+function clicBtnPlay() {
+	// Si terminó o si ya está en pausa...
+	if (objAudio.ended || objAudio.paused) {
+	// toca reproducir
+		playerPlay();
+	} else {
+	// caso contrario, coloca en pausa 
+		playerPause();
+}
+}
+// En reproducción
+function playerPlay() {
+	// cambia el estado a reproducción
+	btnPlay.innerHTML = 'Pausa';
+	estadoAudio.innerHTML = 'En reproducción...';
+	// reinicia la reproducción
+	objAudio.play();
+}
+// En pausa
+function playerPause() {
+	// cambia el estado a pausa 
+	btnPlay.innerHTML = 'Reproducción';
+	estadoAudio.innerHTML = 'Pausa';
+	// coloca el reproductor en pausa
+	objAudio.pause();
+}
+// controla el volumen
+function ajustarVolumen(nivel) {
+	// asigna el volumen
+	//objAudio.volume = nivel;
+	
+	// actualiza la barra de volumen
+	//objFondo = document.getElementById('fondoVolumen');
+	//anchoBarra =obj.offsetWidth*nivel;
+	
+	//objBarraVolumen = document.getElementById('barraVolumen');
+	//objBarraVolumen.innerHTML = parseInt(nivel*100) + '%';
+	//objBarraVolumen.style.width=anchoBarra+'px';
+}
+// cambio de volumen desde la barra
+function cambiaNivelVolumen(ev) {
+	//obtiene la posición relativa
+	var clientX = ev.clientX;
+	var offset = clientX - ev.currentTarget.offsetLeft;
+	var nivel = offset/ev.currentTarget.offsetWidth;
+	objAudio.volume = nivel;
+	//ajustarVolumen(nivel);
+}
+// carga de la página-->inicializa todo
+window.addEventListener('load',fnInicializar,false);
+</script>
+
+</head>
+<body>
+<div id="radioPlayer">
+	<h1>Streaming con HTML 5</h1>
+	<audio id="audio">
+		<p>El navegador no tiene soporte para el elemento AUDIO de HTML 5. </p>
+	</audio>
+	<div id="radios">
+		<label for="listaRadios">Lista de radios</label>
+		<select id="listaRadios" size="5" onChange="cambiaRadio();"></select>
+	</div>
+	<div id="radioPlayer">
+		<h2 id="estadoAudio"></h2>
+		<p id="radioSintonizada"></p>
+		<div id="controlAudio">
+			<div id="LabelVolumen">Volumen</div>
+				<div id="controlVolumen" onClick="cambiaNivelVolumen(event);">
+				<div id="fondoVolumen">
+					<div id="barraVolumen"></div>
+				</div>
+			</div>
+			<button id="btnPlay" onClick="clicBtnPlay();"></button>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+ 
