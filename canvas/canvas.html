@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <input type="text" name>
 	<meta charset="UTF-8">
 	<title>ejemplo de canvas</title>
 
@@ -23,6 +24,7 @@
 
 	<script type="text/javascript"  >
 var example = document.getElementById('tablero1');
+console.log()
 var context = example.getContext('2d');
 var i=1;
 var color = true;
@@ -45,12 +47,15 @@ for (i=1;i<=8;i++)
     {	
         if (color)
         {
-            context.fillStyle = "brown";
+            context.fillStyle = "darkorange";
+            
+
             color = false;
         }                
         else
         {
-            context.fillStyle = "white";
+            context.fillStyle = "blue";
+            context.fillText(i+j,20, 70);
             color = true;
         }
         context.fillRect(20+i*80, 50+j*80, 80, 80);
