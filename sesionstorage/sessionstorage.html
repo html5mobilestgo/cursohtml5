@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script type="text/javascript">
+		$('input#guardar').on('click',function(){
+			var c=$('input#clave').val();
+			var c=$('input#valor').val();
+			sessionStorage.setItem(c,v);
+		});
+		
+
+
+
+	</script>
+
+	<title>Document</title>
+</head>
+<body>
+	<form action="" class="form-inline">
+		<div class="form-group"><label for="">Introduce clave</label>
+			<input type="text" name="" id="clave" class="form-control" placeholder="Pon Clave">
+		</div>
+	<div class="form-group"><label for="">"Pon valor"</label></div>
+	<input type="text" name="" id="valor" class="form-control" placeholder="Pon Valor">
+	<input type="button" value="Guardar" class="btn btn-default" id="guardar">
+	</form>
+	<form action="" class="form-inline">
+		<div class="form-group"><label for="">Clave a Buscar</label>
+			<input type="text" name="" id="claveBuscar" class="form-control" placeholder="Clave a Buscar">
+		</div>
+	<div class="form-group"><label for="">"Valor encontrado"</label>
+		<input type="text" name="" id="valorBuscar" class="form-control"disabled  >
+	</div>
+	<input type="button" value="buscar" class="btn btn-success" id="buscar">
+	</form>
+	<form action="" class="form-inline">
+		<div class="form-group"><label for="">Clave a Borrar</label>
+			<input type="text" name="" id="claveBorrar" class="form-control" placeholder="Clave a Borrar">
+		</div>
+	<input type="button" value="Borrar" class="btn btn-warning" id="Borrar">
+	</form>
+</body>
+</html>
