@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- este código corresponde al archivo cap12x14.html -->
+<!-- ejemplo de animate() -->
+<head>
+<title>Ejemplo de método animate</title>
+<meta charset="ISO-8859-1"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+  {
+  $("#iddiv").hide();
+  $("#bt1").click(function(){
+    $("#iddiv").animate({width:"300px", height:"300px"});
+  });
+  $("#bt2").click(function(){
+    $("#iddiv").animate({height:"100px", width:"300px"});
+  });
+  $("#bt3").click(function(){
+    $("#iddiv").hide();
+  });
+   $("#bt4").click(function(){
+    $("#iddiv").show();
+  });
+   $("#bt5").click(function(){
+    $("#iddiv").removeAttr("style");
+  });
+});
+</script>
+</head>
+<body>
+<div id="iddiv" style="background:#FF0000;height:100px; width:300px;">
+</div>
+<button id="bt1">Cuadrado</button>
+<button id="bt2">Rectángulo</button>
+<button id="bt3">Ocultar</button>
+<button id="bt4">Mostrar</button>
+<button id="bt5">Quitar atributos de estilo</button>
+</body>
+</html>
+
+ 

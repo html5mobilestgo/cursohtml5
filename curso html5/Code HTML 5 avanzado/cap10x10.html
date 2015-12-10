@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap10X10.html -->
+<!-- ejemplo de sintonizador de streaming radio-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Streaming Radio</title>
+<script>
+// variables globales
+// para contener el objeto del elemento AUDIO(
+var objAudio;
+// para indicar el estado de la reproducción
+var estadoAudio;
+// botón Reproducción/Pausa
+var btnPlay;
+
+// Matriz con la lista de estaciones de radio
+var mat = new Array();
+mat[0] = new Array("RTVE", "http://icy-e-01.sharp-stream.com:80/sevenfm.mp3", "mp3");
+mat[1] = new Array("RTVE 2", "http://icy-e-01.sharp-stream.com:80/frenchradiolon.mp3", "mp3");
+mat[2] = new Array("Radio Clásica", "http://195.10.10.206/rtve/radioclasica.mp3?GKID=2db1d7f6aa6511e1892500163ea2c743&fspref=aHR0cDovL3d3dy5saXN0ZW5saXZlLmV1L3NwYWluLmh0bWw%3D", "mp3");
+mat[3] = new Array("Radio clásica 2", "http://195.10.10.206/rtve/radioclasica.mp3", "mp3");
+mat[4] = new Array("Cadena SER", "http://194.169.201.177:8085/liveser.mp3", "mp3");
+mat[5] = new Array("RAC1", "http://streaming3.radiocat.net:80/", "mp3");
+mat[6] = new Array("BBC", "http://vprbbc.streamguys.net:80/vprbbc24.mp3", "mp3");
+
+// Inicialización
+function fnInicializar() {
+	// se obtiene la referencia al elemento de audio
+	// obtener las referencias de los elementos de la interfaz
+	// para actuar sobre ellos desde JavaScript
+	objAudio = document.getElementById('audio');
+	btnPlay = document.getElementById('btnPlay');	
+	estadoAudio = document.getElementById('estadoAudio');
+	
+	// gestionar errores del objeto audio
+	objAudio.onerror = function(evt) {
+	switch (objAudio.error.code) {
+		case objAudio.error.MEDIA_ERR_ABORTED:
+			alert('La reproducción fue interrumpida.');
+			break;
+		case objAudio.error.MEDIA_ERR_NETWORK:
+			alert('Error de red.');
+			break;
+		case objAudio.error.MEDIA_ERR_DECODE:
+			alert('Error en la decodificación del stream.');
+			break;
+		case objAudio.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+			alert('Error: archivo de medio no soportado.');
+			break;
+		default:
+			alert('Error no esperado:  **'+objAudio.error.code+'**');
+			break;
+	}
+	}
+	// gestor de evento
+	// cambio en la duración
+	objAudio.addEventListener('durationchange', reproduccionStream, false);
+	
+	// se asigna un nivel de volumen por default
+	objAudio.volume = 0.8;	
+	
+
+	// se carga la lista de estaciones
+	// que se puede ampliar a voluntad
+	// lista de estaciones en la interfaz
+	var listaRadios = document.getElementById('listaRadios');
+	// creación dinámica de la lista
+	for (var fila = 0; fila < mat.length; fila++) {
+		// crea la etiqueta option 
+		var nuevoItem = document.createElement('option');
+		nuevoItem.text = mat[fila][0];
+		// añade la opción
+		try {
+			listaRadios.add(nuevoItem, null);
+		} catch(ex) {
+			// para IE
+			listaRadios.add(nuevoItem);
+		}
+	}
+}
+// fin inicialización /////////////
+
+//////////////////////////////// 
+// Establece la estación elegida
+function cambiaRadio() {
+	// informa que se está cargando el buffer
+	estadoAudio.innerHTML = 'Carga del buffer...';
+	
+	// determina el origen del streaming y su tipo
+	var selectRadios = document.getElementById('listaRadios');
+	objAudio.src = mat[selectRadios.selectedIndex][1];
+	objAudio.type = 'audio/' + mat[selectRadios.selectedIndex][2];;
+	
+	// muestra la estación seleccionada
+	var radioSintonizada = document.getElementById('radioSintonizada');
+	radioSintonizada.innerHTML = mat[selectRadios.selectedIndex][0];
+	
+	// reproduce el streaming
+	objAudio.play();
+}
+
+// Estado: en reproducción
+function reproduccionStream() {
+	// Muestra el estado actual
+	estadoAudio.innerHTML = 'En reproducción...';
+	btnPlay.innerHTML = 'Pausa';
+}
+ 
+// clic en botón Reproducción/Pausa
+function toggleBtn() {
+	// Si terminó o si ya está en pausa...
+	if (objAudio.ended || objAudio.paused) {
+	// toca reproducir
+		reproducir();
+	} else {
+	// caso contrario, coloca en pausa 
+		hacerPausa();
+}
+}
+// En reproducción
+function reproducir() {
+	// cambia el estado a reproducción
+	btnPlay.innerHTML = 'Pausa';
+	estadoAudio.innerHTML = 'En reproducción...';
+	// reinicia la reproducción
+	objAudio.play();
+}
+// En pausa
+function hacerPausa() {
+	// cambia el estado a pausa 
+	btnPlay.innerHTML = 'En reproducción';
+	estadoAudio.innerHTML = 'Pausa';
+	// coloca el reproductor en pausa
+	objAudio.pause();
+}
+
+// carga de la página-->inicializa todo
+window.addEventListener('load',fnInicializar,false);
+</script>
+
+</head>
+<body>
+<h1>Streaming con HTML 5</h1>
+<audio id="audio">
+	<p>El navegador no tiene soporte para el elemento AUDIO de HTML 5. </p>
+</audio>
+<div id="radios">
+	<label for="listaRadios">Lista de radios</label>
+	<select id="listaRadios" size="5" onChange="cambiaRadio();"></select>
+</div>
+<h3 id="estadoAudio"></h3>
+<h4 id="radioSintonizada"></h4>
+<button id="btnPlay" onClick="toggleBtn();"></button>	
+</body>
+</html>
+ 

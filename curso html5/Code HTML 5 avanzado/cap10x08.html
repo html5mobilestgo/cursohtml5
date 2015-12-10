@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap10X08.html -->
+<!-- ejemplo de canvas y animación con transformaciones-->
+<head>
+<meta charset="ISO-8859-1">
+<title>Animación de imágenes con transformaciones de Canvas</title>
+<style>
+#miCanvas { border:5px solid #FF0000; }
+</style>
+<script>
+// objetos canvas y contexto
+var objCanvas;
+var ctx;
+
+// crea objeto para contener la imagen
+var imagenExterna = new Image();
+
+// punto inicial
+var ptoY;
+
+// otras variables globales
+// velocidad de rotación y movimiento 
+var tiempoPorCambio; 
+// aceleración de rotación y movimiento 
+var aceleracionPorCambio; 
+// contador
+var cambiosPorVuelta ;  
+// grados en gradianes de cada transformación
+var gradosPorCambio;  
+// saltos en la distancia en cada cambio
+var offsetPorCambio; 
+
+
+// Inicializar  
+function inicializar() {
+	objCanvas = document.getElementById('miCanvas');
+	ctx = objCanvas.getContext('2d');
+	
+	// inicializar las variables para controlar
+	// la transformación
+	cambiosPorVuelta  = 0; 
+	gradosPorCambio = 5; // 5 radianes
+	offsetPorCambio = 5; // 5 píxeles
+	tiempoPorCambio = 1000; // 1000 ms
+	aceleracionPorCambio= 1.1; // aceleración
+
+	// gestión de eventos 
+	imagenExterna.addEventListener('load',iniciarMovimiento,false);
+	
+	// Asignación de la imagen al objeto
+	imagenExterna.src = 'rueda.jpg';
+	
+	// Blanquear el lienzo
+	ctx.clearRect(0, 0, objCanvas.width, objCanvas.height);
+}
+
+// Empieza la animación
+function iniciarMovimiento(){
+	// punto inicial
+	ptoY = -(imagenExterna.height/2);
+	
+	// transformación
+	transformar();
+};
+
+// Función de transformación y dibujo de la imagen
+function transformar() {
+	
+	// Se almacena el contexto para usarlo 
+	// más tarde con restore()
+	ctx.save();
+	
+	// aplica la aceleración
+	tiempoPorCambio = tiempoPorCambio / aceleracionPorCambio;
+	
+	// Desplazamiento por el eje y
+	// en cada cambio
+	ptoY += offsetPorCambio;
+	
+	// Se actualiza el punto de origen
+	ctx.translate(objCanvas.width-(imagenExterna.height/2),ptoY);
+	
+	// Giro de la imagen los grados que 
+	// corresponden a este paso
+	ctx.rotate(Math.PI * gradosPorCambio * cambiosPorVuelta  / 180);
+	
+	// Dibujar la imagen 
+	ctx.drawImage(imagenExterna, -(imagenExterna.width/2), -(imagenExterna.height/2), imagenExterna.width, imagenExterna.height);
+	
+	// Restaura el contexto a su estado normal
+	ctx.restore();
+	
+	// ¿Se llega al final del lienzo?
+	if ((ptoY-(imagenExterna.height/2)) < objCanvas.height) {
+		// paso siguiente
+		cambiosPorVuelta ++;
+		// si se dio la vuelta completa
+		// volvemos a 0	
+	if (cambiosPorVuelta >=(parseInt(360 / gradosPorCambio)-1)) {
+			cambiosPorVuelta =0;
+		}
+	//  establece el timer para llamar
+	// a la transformación
+	setTimeout('transformar()',tiempoPorCambio);
+	}
+}
+
+// función inicializar al cargar la página
+window.addEventListener('load',inicializar,false);
+
+</script>
+</head>
+<body>
+<h1>Transformación de canvas</h1>
+<canvas id="miCanvas" width="100" height="500">
+El elemento Canvas HTML5 no está soportado en su navegador.
+Utilice un navegador actualizado.
+</canvas>
+</body>
+</html>

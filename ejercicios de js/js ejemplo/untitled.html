@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pagina sencilla</title>
+
+</head>
+<body>
+	<p>Esta página es <strong>muy sencilla </strong></p>
+	<script type="javascript"> 
+	var miParrafo.document.createElement("p");
+	miParrafo.setAttribute("name", "mip");
+	var contenido = document.createTextNode("Hola Mundo");
+	miParrafo.appendChild(contenido);
+	document.body.appendChild(miParrafo);
+
+
+	var padreMiParrafo = miParrafo.parentNode;
+	var boton = document.createElement("input");
+	boton.setAttribute("type", "button");
+	boton.setAttribute("name", "boton");
+	boton.setAttribute("value", "boton");
+	padreMiParrafo.insertBefore(boton, miParrafo);
+	</script>
+</body>
+</html>

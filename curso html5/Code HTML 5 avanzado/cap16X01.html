@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="no-js">
+<!-- este código corresponde al archivo cap16X01.html -->
+<!--  ejemplo de detección de medios -->
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Ejemplo de detección de medios</title>
+	<style>
+div { background-color: #00f; }
+@media screen and (min-width: 100px) {
+	#media-queries-1 { background-color: #0f0; }
+}	
+
+@media screen and (max-width: 1000px) {
+	#media-queries-1 { background-color: #f00; }
+}
+</style>
+</head>
+<body>
+<div id="media-queries-1">mín 640</div>
+<div id="media-queries-1">máx. 2000</div>
+</body>
+</html>

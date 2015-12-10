@@ -1,0 +1,6 @@
+<style type="text/css">
+	header, nav, footer, article {display:block;}
+	nav {float:left; width:30%;font-size:10pt;}
+	article {float: right; width:70%; font-size:12pt;}
+	pre {font-style:italic;font-size:9pt;}
+</style>

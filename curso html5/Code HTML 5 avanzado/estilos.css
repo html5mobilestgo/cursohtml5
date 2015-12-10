@@ -1,0 +1,93 @@
+header, nav, footer, article, section {display:block;}
+	
+	body {background-color: whitesmoke;}
+	
+	article { border: thin yellow groove;}
+	
+	article.tecnica
+		{ background-color: lightblue; 
+		  border: thick dashed darkblue; }
+          
+	article.hola
+		{ background-color: #F9C9C8; 
+	          border: thick dotted darkviolet; }
+	          
+	aside   { float: left; 
+		  width:99%; border: 
+		  thin black ridge;}
+	div.cuadro 
+	        { border: thick yellow solid;}
+	
+	footer  { clear:both;}
+		
+	header  { font-family: Garamond; 
+		  text-align: center;
+		  font-size: x-large; 
+		  background-image: url("images/fondo.jpg"); }
+		  
+	h1      { text-align:center; 
+		  background-color: yellow; 
+	          border: thin blue solid;}         
+		
+	          
+	section.tope {
+		width:99%; 
+		border: thick blue dotted; }
+	
+	section.tope h2 {color:red;}	
+		
+	section.tope img {		 
+		border: thick blue solid; 
+		margin: 20px;}
+	
+	nav.lateral 
+		{float:left; 
+		 width:15%; 
+		 border: thin blue dashed;}
+	section.col1 
+		{float:left; 
+		 width:35%; 
+		 border: thin red solid;}
+	section.col2 
+		{float:left; 
+		 width:49%; 
+		 border: 
+		 thin yellow solid; 
+		 background-color: lightsalmon;}
+	section.col3 
+		{float:left; 
+		 width:25%; 
+		 border: thin green solid;}
+	section.col4 
+		{float:left; 
+		 width:24%; 
+		 border: thin green solid;}
+
+	 
+	.hola   { color: darkviolet; 
+		  font-weight: 400; 
+		  font-family: Arial; 
+		  letter-spacing: 2px; }
+		  
+	#aviso  { color: red; 
+		  text-align: center;
+		  font-size: x-large; 
+		  font-weight: bold; 
+		  font-family: Arial; 
+		  letter-spacing: 10px; }
+		  
+	#menu   { border:thin red solid; 
+	          background-color: yellow; 
+	          display:inline; margin: 15px;} 	 
+	
+	table 	{border: 2pt solid red; 
+		 padding: 2px;}	
+		 
+	td 	{text-align: right;}
+	
+	td:first-child {text-align: left;}
+	
+	th 	{border: 1pt solid black; 
+		 padding: 2px;}
+	
+ 

@@ -1,0 +1,54 @@
+*{
+	margin: 0%;
+	padding: 0%;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+body{
+	background: whitesmoke;
+	display:inline-block;
+	width: 100%;
+
+}
+header, aside, nav, section,article, footer{
+	border: 1px solid #54fe75;
+
+}
+head, nav, footer{
+	text-align: center;
+	width: 100%;
+}
+li{
+	text-align: inherit;
+	list-style: inline;
+	display: inline;
+}
+section{
+	width:70%;
+}
+aside{
+		text-align: center;
+white-space: 2px;
+	width: 30%;
+	float: right;
+
+}
+footer{
+	width:100%;
+}
+@media screen and (max-width: 700x){
+	li{
+		display:block;
+		text-align: inherit;
+		list-style: inline;
+		display: inline;
+	}
+	section,aside{
+		width: 80%;
+		float: left ;
+	}
+
+
+
+}

@@ -1,0 +1,5 @@
+AuthUserFile "C:\Appserv\www\PHP6\Noticias\ADMIN\.htpasswd"
+AuthName ZonaAdmin
+AuthType Basic
+
+require valid-user

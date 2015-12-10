@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Trazado de líneas</title>
+<script>
+function obtenerContexto(idCanvas){
+   var obj = document.getElementById(idCanvas);
+   if(obj && obj.getContext){
+      var contexto = obj.getContext('2d');
+      if(contexto){
+         return contexto;
+      }
+   }
+   return FALSE;
+}
+
+window.onload = function(){
+   //Recibimos el elemento canvas
+   var ctx = obtenerContexto('id01');
+   if(ctx){
+      ctx.beginPath();
+      ctx.moveTo(150,150);
+      ctx.lineTo(10,10);
+      ctx.lineTo(290,10);
+      ctx.lineTo(150,290);
+      ctx.fill();
+   }
+}
+</script>
+</head>
+
+<body>
+<canvas id="id01" width="300" height="300">
+Lo siento, este navegador no reconoce el elemento canvas.
+</canvas>
+</body>
+</html>

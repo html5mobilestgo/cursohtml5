@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capfile01html -->
+<!-- ejemplo de uso de la API File  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Obtención de la información de un archivo</title>
+<script>
+// información del archivo seleccionado
+function fileSelected(archivo) {
+	// se obtiene el objeto de la interfaz en donde
+	//se mostrará la información
+	var fileinfo = document.getElementById('fileinfo');
+	
+	// ¿Hay soporte para la interface?
+	if (archivo.files) {
+		// se obtiene el primer elemento
+		// del array
+		var objFile = archivo.files[0];
+		
+		// se obtiene la información
+		var txtInfo = 'Información del archivo:<br>';
+		txtInfo += 'nombre: ' + objFile.name + '<br>';
+		txtInfo += 'tipo: ' + objFile.type + '<br>';
+		txtInfo += 'tamaño en bytes: ' + (objFile.size);
+		txtInfo += 'última modificación: ' + objFile.lastModifiedDate;
+		
+		// se muestra en la interfaz
+		fileinfo.innerHTML = txtInfo;
+	} else {
+	// el navegador no soporta la interfaz File
+		fileinfo.innerHTML = 'Este navegador no soporta la API File';
+	}
+}
+</script>
+</head>
+<body>
+<h1>Seleccionar un archivo para obtener su descripción:</h1>
+<section>
+<input type="file" id="input" onchange="fileSelected(this)" />
+</section>
+<br>
+<section id="fileinfo"></section>
+</body>
+</html>

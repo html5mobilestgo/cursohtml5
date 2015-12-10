@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<!-- archivo Parte 3/code/file004.html -->
+<html>
+<head>
+<title>Calculadora muy fácil y simple (file004.html)</title>
+<script language=javascript>
+function fnCalcular(str) {
+	var iResultado = eval(str);
+	document.miForm.miResultado.value = iResultado;
+
+}
+</script>
+</head>
+<body>
+<form name="miForm">Introducir una fórmula aritmética::<br>
+<input type=text" name="miExpresión" value="" size=80>
+<p> El resultado es: <input type="text" name="miResultado" value=0>
+<input type="button" name="miButton" value="Calcular" onclick="fnCalcular(miForm.miExpresión.value)"
+</form>
+</body>
+</html>
+

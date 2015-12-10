@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap11x06.html -->
+<!-- ejemplo de uso de localStorage 
+     para mantener los datos de un formulario -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Uso de localStorage para mantener datos de un formulario</title>
+<script>
+
+// obtiene los datos desde el almacenamiento
+function obtenerDatos() {
+	// verifica si hay soporte
+	if (window.localStorage) {
+		var clave;
+		var valor;
+		var objForm;
+		// se obtienen los datos
+		// desde el almacenamiento local
+		// se recorre toda la lista de clave/valor
+		for (var i = 0; i < localStorage.length; i++) {
+			// obtiene la clave del par clave/valor 
+			clave = localStorage.key(i);
+			// obtiene el objeto de la interfaz
+			// relacionado con ese identificador
+			objForm = document.getElementById(clave);
+			// si existe el campo, lo asigna
+			// con el valor
+			if (objForm) {
+				// obtenemos el valor relacionado con el identificador
+				valor = unescape(localStorage.getItem(clave));
+				// asigna el valor
+				objForm.value = valor;
+			}
+		}  
+	}   
+}  
+
+// se limpia todo el almacenamiento
+function limpiarDatos() {
+	// verifica si hay soporte
+	if (window.localStorage) {
+		localStorage.clear();			
+		}  
+}  
+ 
+// Guarda el dato en LocalStorage
+function guardarDato(campo) {
+	// Detecta si hay soporte
+	if (window.localStorage) {
+		var clave, valor;
+		// guarda el identificador como clave
+		clave = campo.id;
+		// guarda el valor
+		valor = escape(campo.value);
+		// almacena el par clave/valor
+		try {
+			localStorage.setItem(clave, valor);
+		}
+		catch (err) {
+			if (err.code == QUOTA_EXCEEDED_ERR) {
+				alert('No hay memoria disponible.');
+		}
+	}
+	} else {
+		alert('No hay soporte para LocalStorage.');
+	}
+}
+
+// al cargar la página se verifica
+// si hay datos en localStorage
+window.addEventListener('load',obtenerDatos,false);
+</script>
+</head>
+<body>
+<h1>Formulario de envío de email</h1>
+	<form id='id01'>
+		<table>
+		<tr><td>Email de:</td>
+		<td><input type="email" id="origen" onchange="guardarDato(this);" /></td></tr>
+		<tr><td>Email para:</td>
+		<td><input type="email" id="destino" onchange="guardarDato(this);" /></td></tr>
+		<tr><td>Asunto:</td>
+		<td><input type="text" id="asunto" onchange="guardarDato(this);" /></td></tr>
+		<tr><td>Texto del email:</td>
+		<td><textarea id="texto" onchange="guardarDato(this);" ></textarea></td></tr>		
+		<tr><td><input type="reset" value="Limpiar" onclick="limpiarDatos();"/>
+		<input type="submit" value="Enviar" onclick="limpiarDatos();" /></td></tr> 
+		</table>
+</form>
+</body>
+</html>
+

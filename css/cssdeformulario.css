@@ -1,0 +1,33 @@
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+
+legend{
+	border: 1px solid grey;
+}
+*{
+	display:block;
+}
+html{
+		text-align: center
+
+}
+input{
+	display: inline;
+}
+form{
+
+	width:300px;
+}

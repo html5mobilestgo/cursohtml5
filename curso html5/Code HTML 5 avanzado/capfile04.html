@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo capfile04.html -->
+<!-- ejemplo de uso de la API File  -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Lectura de un archivo binario</title>
+<style>
+#barra {
+    border: 2px solid #000;
+    font-size: 16px;
+    clear: both;
+    opacity: 0;
+}
+#barra.leyendo {
+    opacity: 1.0;
+}
+#barra .avance {
+    background-color: #77aaff;
+    height: auto;
+    width: 0;
+}	
+#button {
+	display: none;
+}
+
+</style>
+
+
+<script>
+  var reader;
+  
+  function cancelarLectura() {
+    reader.abort();
+  }
+
+  function tratarErrores(evt) {
+    var textoError = 'Error: ';
+	switch(evt.target.error.code) {		
+		case evt.target.error.NOT_READABLE_ERR:
+			textoError += 'Problema para leer el archivo.';
+			break;
+		case evt.target.error.ABORT_ERR:
+			textoError += 'Operación cancelada.';
+			break;  
+		case evt.target.error.ENCODING_ERROR:
+			textoError += 'Formato erróneo.';
+			break;  
+		case evt.target.error.SECURITY_ERR:
+			textoError += 'Problema de seguridad.';
+			break;  
+	    case evt.target.error.NOT_FOUND_ERR:
+			textoError += 'archivo no encontrado.';
+			break;		
+		default:
+			textoError += 'Código imprevisto.';
+    };
+   
+	alert(textoError);
+	botonVisible(false);
+  }
+
+  function actualizarAvance(evt) {
+    // evt: objeto ProgressEvent
+	var avance = document.getElementById('avance');
+    if (evt.lengthComputable) {
+		// loaded y total son propiedades de ProgressEvent
+      var porcentajeLeido = Math.round((evt.loaded / evt.total) * 100);
+      // Incrementa el ancho de la barra de progreso
+      if (porcentajeLeido < 100) {
+        avance.style.width = porcentajeLeido + '%';
+        avance.textContent = porcentajeLeido + '%';
+      }
+    }
+  }
+
+  function archivoSeleccionado(evt) {
+    // se obtiene el objeto relacionado
+	// con la etiqueta div en la que
+	// se dibujará el grado de avance
+    var avance = document.getElementById('avance');
+	
+    // Inicio: ancho de la barra a cero %
+    avance.style.width = '0%';
+	// texto de 0%
+    avance.textContent = '0%';
+
+	// objeto FileReader para lectura
+	// de archivos
+    reader = new FileReader();
+	
+	// gestor del evento onloadstart
+    reader.onloadstart = function() {
+		// se cambia la clase del estilo
+		document.getElementById('barra').className = 'leyendo';
+		botonVisible(true);
+    };
+	
+	// gestor del evento onload
+    reader.onload = function() {
+		// se produjo la lectura total y correcta
+        avance.style.width = '100%';
+		avance.textContent = '100%';
+		
+		// desaparece el botón (ya no hay
+		// nada para cancelar)
+		botonVisible(false);
+		
+		var p = document.getElementById('estado');
+		p.innerHTML = 'Lectura completa.' 
+		
+		// tiempo 8 segundos y desaparece la barra
+		// del 100%
+		setTimeout("document.getElementById('barra').className='';", 8000);
+    }
+	
+	// gestor del evento onprogress
+    reader.onprogress = actualizarAvance;
+	
+	// gestor del evento onabort
+    reader.onabort = function() {
+		alert('Se ordena la cancelación de la lectura del archivo.');
+    };
+	
+	// se definen los gestores de los eventos 
+	// gestionar el evento onerror
+    reader.onerror = tratarErrores;	
+
+    // Lectura de un archivo como cadena binaria  
+    reader.readAsBinaryString(evt.target.files[0]);
+}
+
+// se visualiza el botón para cancelar 
+// sólo se visualiza mientras se produce 
+// la lectura del archivo
+function botonVisible(b) {
+	// se controla la visibilidad del botón 
+	// de cancelación
+	var button = document.getElementById('button');
+	if (b) {
+		button.style.display = 'inline';
+	} else {
+		button.style.display = 'none';
+	}
+} 
+
+// el evento change de la etiqueta input activa la
+// función archivoSeleccionado 
+function activarDetectoresEventos() {
+	document.getElementById('files').addEventListener('change', archivoSeleccionado, false);
+}
+
+// al cargar la página se activan los detectores
+window.addEventListener('load',activarDetectoresEventos,false);  
+
+</script>
+<body>
+<input type="file" id="files" name="file" />
+<button id="button" onclick="cancelarLectura();" >Cancelar lectura</button>
+<div id="barra">
+	<div id="avance" class="avance">0%</div>
+</div>
+<p id="estado"></p>
+</body>
+</html>
+ 

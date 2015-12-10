@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<!-- este código corresponde al archivo cap09X02.html -->
+<!--  ejemplo de input date -->
+<head>
+<meta charset="ISO-8859-1">
+<title>Tipo de entrada de datos date (con Javascript)</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/base/jquery-ui.css" media="screen" /><script>
+$(function(){
+function verificaInputDate() {
+var objInput = document.createElement("input");
+objInput.setAttribute("type", "date");
+var checkSoporte = (objInput.type !== "text");
+delete objInput;
+return checkSoporte;}
+// si no hay soporte lo crea con la ayuda
+// de Javascript y unas librerías de ajax.googleapis
+if (!verificaInputDate() || ($.browser.webkit)) {
+$('input[type=date]').datepicker({
+dateFormat: 'yy-mm-dd' });}
+}
+);
+</script>
+</head>
+<body>
+<form>
+<label for="fecha">Elija una fecha del almanaque:  
+</label> 
+<input  type="date"  id="fecha" name="date"  value="2012-05-31"/>
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>

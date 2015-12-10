@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html >
+<!-- este código corresponde al archivo cap16X09.html -->
+<!--  banner con animación -->
+<head>	
+	<title>Animaciones</title>
+<style>
+h1 {
+top: 0px;
+width: 800px;
+font: 40px Arial, sans-serif;
+padding: 30px;
+position: absolute;
+left: -50px;
+text-align:center;
+border: 5px solid red;
+
+/* transformación */ 
+transform: rotate(-20deg);
+-ms-transform: rotate(-20deg);
+-o-transform: rotate(-20deg);
+-webkit-transform: rotate(-20deg);
+-moz-transform: rotate(-20deg);
+
+/* animación genérica */
+animation-name:mibanner;
+animation-duration:20s;
+animation-timing-function: ease;
+animation-iteration-count: infinite;
+
+
+/* mozilla */
+-moz-animation-name:mibanner;
+-moz-animation-duration:20s;
+-moz-animation-timing-function: ease;
+-moz-animation-iteration-count: infinite;
+
+/* WebKit */
+-webkit-animation-name:mibanner;
+-webkit-animation-duration:20s;
+-webkit-animation-timing-function: ease;
+-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes mibanner
+{
+0% {background:#00F;color:white;font: 40px Arial, sans-serif;}
+20% {background:#08D;color:black;font: 30px Arial, sans-serif;}
+40% {background:#0FF;color:red;font: 20px Arial, sans-serif;}
+60% {background:#080;color:blue;font: 30px Arial, sans-serif;}
+80% {background:#F0F;color:yellow;font: 40px Arial, sans-serif;}
+100% {background:#F8F;color:green;font: 50px Arial, sans-serif;} 
+}
+
+/* mozilla */
+@-moz-keyframes mibanner
+{
+0% {background:#00F;color:white;font: 40px Arial, sans-serif;}
+20% {background:#08D;color:black;font: 30px Arial, sans-serif;}
+40% {background:#0FF;color:red;font: 20px Arial, sans-serif;}
+60% {background:#080;color:blue;font: 30px Arial, sans-serif;}
+80% {background:#F0F;color:yellow;font: 40px Arial, sans-serif;}
+100% {background:#F8F;color:green;font: 50px Arial, sans-serif;} 
+}
+
+/* webkit */
+@-webkit-keyframes mibanner  
+{
+0% {background:#00F;color:white;font: 40px Arial, sans-serif;}
+20% {background:#08D;color:black;font: 30px Arial, sans-serif;}
+40% {background:#0FF;color:red;font: 20px Arial, sans-serif;}
+60% {background:#080;color:blue;font: 30px Arial, sans-serif;}
+80% {background:#F0F;color:yellow;font: 40px Arial, sans-serif;}
+100% {background:#F8F;color:green;font: 50px Arial, sans-serif;} 
+}
+</style>
+</head>
+<body>
+<h1>Banner con animación</h1>
+</body>
+</html>
+
