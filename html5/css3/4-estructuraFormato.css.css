@@ -1,0 +1,6 @@
+body{
+		background:ghostwhite;
+	}
+header, nav, section, article, aside, footer{
+		 border:1px solid darkorange;
+}
