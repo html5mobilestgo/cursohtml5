@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('buttton#full').on('click', function(){
+				console.log("pulsado");
+				var video=$('video#v');
+				if (video[0].requestFullScreen) {
+					console.log("normal");
+					video[0].requestFullScreen();
+				}
+				if (video[0].mozrequestFullScreen) {
+					console.log("moz");
+					video[0].mozrequestFullScreen();
+				}
+				if (video[0].webkitrequestFullScreen) {
+					console.log("webkit");
+					video[0].webkitrequestFullScreen();
+				}
+			});
+		});
+	</script>
+	<style type="text/stylesheet">
+
+	</style>
+</head>
+<body>
+	<!--ejemplo 1-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<video id="video" poster="fotos/luna_de_colores.jpg" controls > </video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4"><button id="full">boton
+				<span class="glyphicon glyphicon-fullscreen"></span></button>
+			</div>
+		</div>
+	
+	<!--
+	<video width="480px" height="200px" controls>
+		<source src="cocinando.mp4" type='video/mp4; codecs="avc1, 42E01E, mp4a.40.2"'>
+		<source src="cocinando.webm" type='video/webm; codecs="vp8,vorbis"'>
+			<p>Tu Navegador no soporta el video </p>
+	</video>
+	<!--ejemplo 2-->
+	<!-- <video controls>
+		<source src="hi-res.mp4" media="(min-device-width:800px)">
+		<source src="lo-res.mp4">
+	</video>  -->
+</body>
+</html>
