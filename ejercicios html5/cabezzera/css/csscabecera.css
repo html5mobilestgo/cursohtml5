@@ -1,0 +1,43 @@
+section{
+	width:30%;
+	float:left;
+}
+
+section>article:odd{
+	background: #33CCCC;
+}
+.segunda>article:first-child, .segunda>article:last-child{
+	background: #33CCCC;
+}
+article>p:last
+	text-align: right;
+}
+
+article,a,h1 {
+	border:1px solid orange;
+}
+article>p:nth-child(2) {
+	text-align: center;
+}
+article>p:last-child{
+	text-align: right;
+}
+
+a, p {
+	display:block;
+
+}
+
+
+
+/*solucion final */
+
+*{
+	box-sizing:border-box;
+	margin:0;
+	padding: 0
+}
+body, header, 
+body {
+
+}

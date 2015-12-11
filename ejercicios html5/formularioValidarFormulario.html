@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/cssdeformulario.css">
+	<script src="js/formularioValidarFormulario.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<form method="POST" action="">
+		<fieldset>
+		<legend>Datos Conexion</legend>
+			<label for="nombre"><br/>Nombre..:<input type="text" name="nombre" id="nombre" placeholder="Basilio" required></label>
+			<label for="password"><br/>Contraseña...:<input type="password" name="password" id="pass" required value ="*********"></label>
+		</fieldset>
+		<fieldset>
+			<legend>Datos personales</legend>
+			<label for="edad">Age....:<input type="number" name="edad" id="edad" min="8" max="10" value="9"required></label>
+			<label for="data">Date ..:<input type="date" name="fecha" id="data" value="2015-10-20" required></label>
+			<label for="email">email<input type="email" name="email" id="email" required></label>
+			<label>
+				<input type="radio" name="sex" value="male" />Hombre
+				<input type="radio" name="sex" value="female" />Mujer
+
+			</label>
+			<label for="">Phone ...:<input type="tel" name="" id="telfijo" pattern="^[89]\d{8}"></label>
+			<label for="">Phone ...:<input type="tel" name="" id="telmovil" pattern="^[67]\d{8}"></label>
+			<label for="Texto"><textarea name="sendtext" id="texto" cols="30" rows="10" value "mi texto es"></textarea></label>
+		</fieldset>
+			<input type="submit" value="envio">
+			<input type="reset" value="Borrado de datos ">
+	</form>
+	<script type="text/javascript">
+
+
+
+	</script>
+</body>
+</html>
